@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Eye, Edit, Trash2, ArrowRight } from 'lucide-react';
+import { useStore } from '../../store/store';
 
 interface Task {
   id: string;
@@ -39,13 +40,22 @@ const Sprint: React.FC<SprintProps> = ({id,name}) => {
     }
   ]);
 
+  const toggleScreen = useStore((state) => state.toggleScreen); // Obtener la función para cambiar de pantalla
+
   return (
     <div className="flex flex-col p-6">
       <div className="flex justify-between items-center mb-6">
         <div className="flex-1"></div>
         <h1 className="text-4xl font-bold text-center font-mono flex-2">{name}</h1>
         <div className="flex-1 text-right">
-          <button className="bg-gray-500 text-white px-4 py-2 rounded-full">BACKLOG</button>
+              {/* Botón para cambiar a la pantalla de Backlog */}
+          <button className="bg-gray-500 text-white px-4 py-2 rounded-full"
+          onClick={toggleScreen} //cambia de pantalla
+          >
+            
+            BACKLOG
+            
+            </button>
         </div>
       </div>
 

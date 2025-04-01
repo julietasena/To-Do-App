@@ -1,9 +1,12 @@
 
+
 import SprintList from './components/SprintList';
-import BacklogList from './components/Backloglist';
-import Sprint from './components/Sprint';
+import BacklogList from './components/screens/Backloglist';
+import Sprint from './components/screens/Sprint';
+import { useStore } from './store/store';
 
 function App() {
+  const { showBacklog} = useStore();
 
   return (
     <div className="flex min-h-screen bg-gray-100">
@@ -15,9 +18,10 @@ function App() {
       </div>
       
       <div className="w-3/4 p-6">
-        <Sprint />
+      {showBacklog ? <BacklogList /> : <Sprint id="1" name="Sprint 1"/>}
       </div>
       <div>
+
       <footer className="relative h-16 bg-gray-800">
   <svg
     className="absolute -top-5 left-0 w-full"

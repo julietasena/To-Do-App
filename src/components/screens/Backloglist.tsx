@@ -1,5 +1,6 @@
 import React from 'react';
 import { Eye, Edit, Trash2, ChevronDown } from 'lucide-react';
+import { useStore } from '../../store/store';
 
 const BacklogList: React.FC = () => {
   const tasks = [
@@ -17,12 +18,24 @@ const BacklogList: React.FC = () => {
     }
   ];
 
+   const toggleScreen = useStore((state) => state.toggleScreen); // Obtener la función para cambiar de pantalla
+
   return (
     <div>
       <div className="flex justify-center items-center mb-6">
         <h1 className="text-4xl font-bold font-mono">BACKLOG</h1>
-       
+        <div className="flex-1 text-right">
+              {/* Botón para cambiar a la pantalla de Backlog */}
+          <button className="bg-gray-500 text-white px-4 py-2 rounded-full"
+          onClick={toggleScreen} //cambia de pantalla
+          >
+            
+            SPRINTS
+            
+            </button>
+        </div>
       </div>
+      
 
       <div className=" bg-[#87c38f]/70 rounded-2xl p-4 mi-h-screen h-full">
         <div className="flex justify-between items-center mb-6">
