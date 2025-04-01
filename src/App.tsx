@@ -3,7 +3,7 @@
 import SprintList from './components/SprintList';
 import BacklogList from './components/screens/Backloglist';
 import Sprint from './components/screens/Sprint';
-import { useStore } from './store/store';
+import { useStore } from './store/botonStore';
 
 function App() {
   const { showBacklog} = useStore();

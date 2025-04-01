@@ -1,0 +1,22 @@
+{
+  "tareas": [
+    {
+      "id": "2",
+      "titulo": "Crear un boton para eliminar tarea",
+      "descripcion": "Estoy editando la tarea numero 2",
+      "fechaLimite": "2025-03-21"
+    },
+    {
+      "id": "Tue Apr 01 2025",
+      "titulo": "Boton eliminar",
+      "descripcion": "Elimina una tarea de la lista.",
+      "fechaLimite": "2025-04-03"
+    },
+    {
+      "id": "Tue Apr 01 2025",
+      "titulo": "Crear modal",
+      "descripcion": "Boton para editar tareas",
+      "fechaLimite": "2025-04-13"
+    }
+  ]
+}

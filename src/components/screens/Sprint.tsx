@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Eye, Edit, Trash2, ArrowRight } from 'lucide-react';
-import { useStore } from '../../store/store';
+import { HeaderSprint } from '../ui/Header/HeaderSprint';
 
 interface Task {
   id: string;
@@ -10,13 +10,12 @@ interface Task {
   status: 'POR HACER' | 'EN PROCESO' | 'COMPLETADO';
 }
 
-interface SprintProps {
-  id: string;
-  name: string;
-}
 
-const Sprint: React.FC<SprintProps> = ({id,name}) => {
-  const [tasks, setTasks] = useState<Task[]>([
+
+const Sprint = () => {
+ /* 
+ 
+ const [tasks, setTasks] = useState<Task[]>([
     { 
       id: '1', 
       title: 'TITULO1', 
@@ -38,32 +37,22 @@ const Sprint: React.FC<SprintProps> = ({id,name}) => {
       dueDate: 'dd/mm/aa',
       status: 'EN PROCESO'
     }
-  ]);
+  ]); 
+  
+  */
 
-  const toggleScreen = useStore((state) => state.toggleScreen); // Obtener la función para cambiar de pantalla
+  
 
   return (
     <div className="flex flex-col p-6">
-      <div className="flex justify-between items-center mb-6">
-        <div className="flex-1"></div>
-        <h1 className="text-4xl font-bold text-center font-mono flex-2">{name}</h1>
-        <div className="flex-1 text-right">
-              {/* Botón para cambiar a la pantalla de Backlog */}
-          <button className="bg-gray-500 text-white px-4 py-2 rounded-full"
-          onClick={toggleScreen} //cambia de pantalla
-          >
-            
-            BACKLOG
-            
-            </button>
-        </div>
-      </div>
-
+      
+ <HeaderSprint/> {/*espera parametros */}
       <div className="flex space-x-4">
         {/* POR HACER Column */}
         <div className="flex-1 bg-[#aad9b0] rounded-2xl p-4">
           <h2 className="text-xl font-bold mb-4 text-center">POR HACER</h2>
           
+        {/*
           {tasks.filter(task => task.status === 'POR HACER').map((task) => (
             <div 
               key={task.id} 
@@ -89,11 +78,14 @@ const Sprint: React.FC<SprintProps> = ({id,name}) => {
               </div>
             </div>
           ))}
+        */}
         </div>
 
         {/* EN PROCESO Column */}
         <div className="flex-1 bg-[#aad9b0] rounded-2xl p-4">
           <h2 className="text-xl font-bold mb-4 text-center">EN PROCESO</h2>
+   
+   {/*
           
           {tasks.filter(task => task.status === 'EN PROCESO').map((task) => (
             <div 
@@ -120,6 +112,7 @@ const Sprint: React.FC<SprintProps> = ({id,name}) => {
               </div>
             </div>
           ))}
+   */}
         </div>
 
         {/* COMPLETADO Column */}
