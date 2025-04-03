@@ -46,6 +46,8 @@ export const useTareas = () => {
 
         editarUnaTarea(tareaEditada);
 
+        console.log("Tareas antes de la actualización:", tareas);
+
         try {
             await editarTarea(tareaEditada);
             Swal.fire("Éxito", "Tarea actualizada correctamente", "success");

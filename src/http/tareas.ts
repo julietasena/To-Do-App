@@ -2,9 +2,7 @@ import axios from "axios";
 import { ITarea } from "../types/ITarea";
 
 
-const API_URL = "http://localhost:3000/tareas";
-
-
+const API_URL = import.meta.env.VITE_API_URL;
 
 export const getAllTareas = async () => {
 
@@ -47,7 +45,6 @@ export const editarTarea = async (tareaActualizada: ITarea) => {
 
 };
 
-//Ver si esto va a ser por id
 export const eliminarTareaPorId = async (idTarea:string) => {
 
     try {

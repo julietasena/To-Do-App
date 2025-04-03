@@ -9,7 +9,7 @@
     {
       "id": "Tue Apr 01 2025",
       "titulo": "Boton eliminar",
-      "descripcion": "Elimina una tarea de la lista.",
+      "descripcion": "Crear el botón de elimitar tarea en el Backlog",
       "fechaLimite": "2025-04-03"
     },
     {
@@ -17,6 +17,30 @@
       "titulo": "Crear modal",
       "descripcion": "Boton para editar tareas",
       "fechaLimite": "2025-04-13"
+    },
+    {
+      "id": "Thu Apr 03 2025",
+      "titulo": "Tarea editada hola",
+      "descripcion": "a",
+      "fechaLimite": "2025-04-11"
+    },
+    {
+      "id": "Thu Apr 03 2025",
+      "titulo": "a",
+      "descripcion": "a",
+      "fechaLimite": "2025-04-10"
+    },
+    {
+      "id": "Thu Apr 03 2025",
+      "titulo": "a",
+      "descripcion": "a",
+      "fechaLimite": "2025-04-27"
+    },
+    {
+      "id": "Thu Apr 03 2025",
+      "titulo": "a",
+      "descripcion": "a",
+      "fechaLimite": "2025-04-11"
     }
   ]
 }
