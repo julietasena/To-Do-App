@@ -7,7 +7,7 @@ interface Store {
 
 export const useStore = create<Store>((set) => ({
 
-  showBacklog: false, //empieza con Sprint
+  showBacklog: true, //empieza con Sprint
 
   toggleScreen: () => set((state) => ({ showBacklog: !state.showBacklog })), //cambia entre sprint y backlog
 
