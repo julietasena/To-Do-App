@@ -4,7 +4,7 @@ import { tareaStore } from "../../../store/tareaStore"
 import { CardListBacklog } from "../CardList/CardListBacklog";
 import { ModalBacklog } from "../Modal/ModalBacklog";
 import { ITarea } from "../../../types/ITarea";
-import { useStore } from "../../../store/botonStore";
+
 
 export const ListTareasBacklog = () => {
 

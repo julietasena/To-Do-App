@@ -4,7 +4,7 @@ import { HeaderSprint } from '../ui/Header/HeaderSprint';
 
 
 
-const Sprint = () => {
+const SprintScreen: React.FC = () => {
 
 
 
@@ -35,4 +35,4 @@ const Sprint = () => {
   );
 };
 
-export default Sprint;
+export default SprintScreen;

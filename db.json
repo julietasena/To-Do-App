@@ -8,39 +8,21 @@
     },
     {
       "id": "Tue Apr 01 2025",
-      "titulo": "Boton eliminar",
-      "descripcion": "Crear el botón de elimitar tarea en el Backlog",
-      "fechaLimite": "2025-04-03"
-    },
-    {
-      "id": "Tue Apr 01 2025",
       "titulo": "Crear modal",
       "descripcion": "Boton para editar tareas",
       "fechaLimite": "2025-04-13"
     },
     {
-      "id": "Thu Apr 03 2025",
-      "titulo": "Tarea editada hola",
-      "descripcion": "a",
-      "fechaLimite": "2025-04-11"
+      "id": "Fri Apr 11 2025",
+      "titulo": "Nueva tarea",
+      "descripcion": "Agrego",
+      "fechaLimite": "2025-04-12"
     },
     {
-      "id": "Thu Apr 03 2025",
-      "titulo": "a",
-      "descripcion": "a",
-      "fechaLimite": "2025-04-10"
-    },
-    {
-      "id": "Thu Apr 03 2025",
-      "titulo": "a",
-      "descripcion": "a",
-      "fechaLimite": "2025-04-27"
-    },
-    {
-      "id": "Thu Apr 03 2025",
-      "titulo": "a",
-      "descripcion": "a",
-      "fechaLimite": "2025-04-11"
+      "id": "Fri Apr 11 2025",
+      "titulo": "Pruebo otra",
+      "descripcion": "Hacer tal cosa",
+      "fechaLimite": "2025-04-14"
     }
   ]
 }

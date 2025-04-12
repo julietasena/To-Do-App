@@ -2,7 +2,7 @@
 import { HeaderBacklog } from '../ui/Header/HeaderBacklog';
 import { ListTareasBacklog } from '../ui/ListTareas/ListTareasBacklog';
 
-const BacklogList: React.FC = () => {
+const BacklogScreen: React.FC = () => {
 
 
 
@@ -18,4 +18,4 @@ const BacklogList: React.FC = () => {
   );
 };
 
-export default BacklogList;
+export default BacklogScreen;
