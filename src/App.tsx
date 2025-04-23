@@ -1,5 +1,5 @@
 
-import SprintList from './components/SprintList';
+import SprintList from './components/ui/ListSprints/ListSprints';
 import { AppRouter } from './routes/AppRouter';
 
 

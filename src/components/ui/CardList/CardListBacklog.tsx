@@ -4,8 +4,6 @@ import { ChevronDown, Edit, Eye, Trash2 } from "lucide-react";
 import { useTareas } from "../../../hooks/useTareas";
 
 
-
-
 type ICardList = {
     tarea: ITarea;
     handleOpenModalEdit: (tarea: ITarea) => void;
