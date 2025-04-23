@@ -39,12 +39,15 @@ export const ModalBacklog: FC<IModal> = ({ handleCloseModal }) => {
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
+    
+        const generarId = () => `${Date.now()}-${Math.random().toString(36).substr(2, 5)}`; // Podés cambiar por las otras 2
+    
         if (tareaActiva) {
             putTareaEditar(formValues);
         } else {
-            crearTarea({ ...formValues, id: new Date().toDateString() });
+            crearTarea({ ...formValues, id: generarId() });
         }
-
+    
         setTareaActiva(null);
         handleCloseModal();
     }
@@ -115,4 +118,3 @@ export const ModalBacklog: FC<IModal> = ({ handleCloseModal }) => {
 
     )
 }
-

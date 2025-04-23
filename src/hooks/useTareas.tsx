@@ -81,14 +81,72 @@ export const useTareas = () => {
             if (estadoPrevio) agregarNuevaTarea(estadoPrevio);
             console.log("Algo salió mal al eliminar")
         }
-    };
 
+    };
+    
+    const verTarea = (idTarea:string) => {
+        const tarea = tareas.find((tarea) => tarea.id === idTarea);
+
+        if (!tarea) {
+            Swal.fire("Error", "No se encontró la tarea", "error");
+            return;
+        }
+
+
+        const fechaLimite = new Date(tarea.fechaLimite);
+        const hoy = new Date();
+
+
+        fechaLimite.setHours(0, 0, 0, 0);
+        hoy.setHours(0, 0, 0, 0);
+
+        const diferenciaTiempo = fechaLimite.getTime() - hoy.getTime();
+        const diasRestantes = Math.ceil(diferenciaTiempo / (1000 * 3600 * 24));
+
+
+        let mensajeDias = "";
+
+        if (diasRestantes < 0) {
+            mensajeDias = `<span class="text-red-500 font-semibold">La tarea está vencida por ${Math.abs(diasRestantes)} día(s)</span>`;
+        } else if (diasRestantes === 0) {
+            mensajeDias = `<span class="text-orange-500 font-semibold">La tarea vence hoy</span>`;
+        } else {
+            mensajeDias = `<span class="text-[#504136] font-semibold">Faltan ${diasRestantes} día(s)</span>`;
+        }
+        Swal.fire({
+            title: "Detalles de la tarea",
+            html: `
+              <div class="flex flex-col space-y-3 text-left">
+                <div>
+                  <label class="block font-semibold text-[#226f54]">Título</label>
+                  <p class="rounded-md px-3 py-2 bg-gray-50">${tarea.titulo}</p>
+                </div>
+                <div>
+                  <label class="block font-semibold text-[#226f54]">Descripción</label>
+                  <p class="rounded-md px-3 py-2 bg-gray-50">${tarea.descripcion}</p>
+                </div>
+                <div>
+                  <label class="block font-semibold text-gray-700">Fecha límite</label>
+                  <p class=" rounded-md px-3 py-2 bg-gray-50">${tarea.fechaLimite}</p>
+                  <p class="rounded-md px-3 py-2 bg-gray-50">${mensajeDias}</p>
+                </div>
+                
+              </div>
+            `,
+            showCancelButton: false,
+            confirmButtonText: "Cerrar",
+            // Color y estilo principal del botón
+            confirmButtonColor: "#226f54", // Ajusta al color verde que uses en tu proyecto
+
+        })
+    };
 
     return {
         getTareas,
         crearTarea,
         putTareaEditar,
         eliminarTarea,
+        verTarea,
         tareas,
     };
 };

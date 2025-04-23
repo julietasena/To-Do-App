@@ -3,5 +3,6 @@ export interface ISprint {
     nombre: string
     fechaInicio: string
     fechaFin: string
+    tareas?:[]
   }
   

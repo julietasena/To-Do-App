@@ -14,30 +14,35 @@
     },
     {
       "id": "Fri Apr 11 2025",
-      "titulo": "Nueva tarea",
-      "descripcion": "Agrego",
-      "fechaLimite": "2025-04-12"
-    },
-    {
-      "id": "Fri Apr 11 2025",
       "titulo": "Pruebo otra",
       "descripcion": "Hacer tal cosa",
       "fechaLimite": "2025-04-14"
+    },
+    {
+      "id": "1745412215559-cd65o",
+      "titulo": "rr",
+      "descripcion": "rr",
+      "fechaLimite": "2025-04-23"
+    },
+    {
+      "id": "1745412229144-munxo",
+      "titulo": "trergdv",
+      "descripcion": "tt",
+      "fechaLimite": "2025-04-24"
     }
   ],
-  
   "sprints": [
-  {
-    "id": "1",
-    "nombre": "Sprint 1",
-    "fechaInicio": "2025-04-22",
-    "fechaFin": "2025-05-05"
-  },
-  {
-    "id": "2",
-    "nombre": "Sprint 2",
-    "fechaInicio": "2025-05-06",
-    "fechaFin": "2025-05-19"
-  }
-]
+    {
+      "id": "1",
+      "nombre": "Sprint 1",
+      "fechaInicio": "2025-04-22",
+      "fechaFin": "2025-05-05"
+    },
+    {
+      "id": "2",
+      "nombre": "Sprint 2",
+      "fechaInicio": "2025-05-06",
+      "fechaFin": "2025-05-19"
+    }
+  ]
 }

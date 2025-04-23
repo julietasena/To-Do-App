@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getAllTareas } from "../../../http/tareas";
-import { tareaStore } from "../../../store/tareaStore"
+import { tareaStore } from "../../../store/tareaStore";
 import { CardListBacklog } from "../CardList/CardListBacklog";
 import { ModalBacklog } from "../Modal/ModalBacklog";
 import { ITarea } from "../../../types/ITarea";
