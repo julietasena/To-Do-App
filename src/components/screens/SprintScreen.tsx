@@ -1,6 +1,7 @@
 
-import { CardListEstado } from '../ui/CardList/CardListEstado';
+
 import { HeaderSprint } from '../ui/Header/HeaderSprint';
+import { ListEstado } from '../ui/ListSprints/ListEstado';
 
 
 
@@ -12,7 +13,7 @@ const SprintScreen: React.FC = () => {
     <div className="flex flex-col p-6">
 
       <HeaderSprint /> {/*espera parametros */}
-      <CardListEstado />
+      <ListEstado />
     </div>
   );
 };
