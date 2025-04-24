@@ -14,7 +14,7 @@ const ListSprints: React.FC = () => {
 
   const handleOpenModalEdit = (sprint: ISprint) => {
     setSprintActivo(sprint);
-    setOpenModalEdit(true); // <- faltaba esto
+    setOpenModalEdit(true); 
   };
 
   const handleCloseModal = () => {
@@ -58,7 +58,7 @@ const ListSprints: React.FC = () => {
         className="bg-[#504136] text-white px-4 py-2 rounded-full"
         onClick={handleCrearSprint}
       >
-        Crear tarea <span className="ml-2">+ </span>
+        Crear Sprint <span className="ml-2">+ </span>
       </button>
 
       {openModalEdit && <ModalSprint handleCloseModal={handleCloseModal} />}
