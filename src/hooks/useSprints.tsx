@@ -3,6 +3,7 @@ import { sprintStore } from "../store/sprintStore";
 import { editarSprint, eliminarSprintPorId, getAllSprints, postNuevoSprint } from "../http/sprints";
 import { ISprint } from "../types/ISprint";
 import Swal from "sweetalert2";
+import { ITarea } from "../types/ITarea";
 
 export const useSprints = () => {
   const {
@@ -36,6 +37,31 @@ export const useSprints = () => {
       console.log("Algo salió mal al crear el sprint");
     }
   };
+
+  const editarTareaDeSprint = async (tareaEditada: ITarea) => {
+    const { sprintActivo, setSprintActivo } = sprintStore.getState();
+  
+    if (!sprintActivo) {
+      console.warn("No hay sprint activo");
+      return;
+    }
+  
+    // Verificamos que la tarea esté en el sprint activo
+    const tareasActualizadas = sprintActivo.tareas?.map((t) =>
+      t.id === tareaEditada.id ? { ...t, ...tareaEditada } : t
+    ) || [];
+  
+    const sprintActualizado = { ...sprintActivo, tareas: tareasActualizadas };
+    setSprintActivo(sprintActualizado);
+  
+    try {
+      await putSprintEditar(sprintActualizado);
+      Swal.fire("Éxito", "Tarea del sprint actualizada", "success");
+    } catch (error) {
+      console.error("Error al actualizar la tarea del sprint");
+    }
+  };
+  
 
   const putSprintEditar = async (sprintEditado: ISprint) => {
     const estadoPrevio = sprints.find((el) => el.id === sprintEditado.id);
@@ -76,6 +102,6 @@ export const useSprints = () => {
       console.log("Algo salió mal al eliminar el sprint");
     }
   };
-
-  return { getSprints, crearSprint, putSprintEditar, eliminarSprint };
+  
+  return { getSprints, crearSprint, putSprintEditar, eliminarSprint, editarTareaDeSprint };
 };

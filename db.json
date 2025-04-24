@@ -3,7 +3,7 @@
     {
       "id": "Tue Apr 01 2025",
       "titulo": "Crear modal",
-      "descripcion": "Boton para editar tareas",
+      "descripcion": "Boton para editar tareasJA",
       "fechaLimite": "2025-04-13",
       "estado": null
     },
@@ -19,6 +19,13 @@
       "titulo": "Tarea Sprint 2.1",
       "descripcion": "e",
       "fechaLimite": "2025-05-02"
+    },
+    {
+      "id": "2",
+      "titulo": "Crear un boton para eliminar tarea",
+      "descripcion": "E\n",
+      "fechaLimite": "2025-03-21",
+      "estado": "porHacer"
     }
   ],
   "sprints": [
@@ -31,9 +38,9 @@
         {
           "id": "2",
           "titulo": "Crear un boton para eliminar tarea",
-          "descripcion": "Estoy editando la tarea numero 2hhhhh hhh hhh hhhh hhhhhhhh hhhhh hhhhhh hhhhhhhhhhhhhhhhhhhh",
+          "descripcion": "Estoy e\n",
           "fechaLimite": "2025-03-21",
-          "estado": "porHacer"
+          "estado": "completado"
         },
         {
           "id": "23269",
@@ -45,8 +52,8 @@
         {
           "id": "258",
           "titulo": "Crear completo",
-          "descripcion": "Estoy editando la tarea numero 2",
-          "fechaLimite": "2025-03-21",
+          "descripcion": "Estoy edi",
+          "fechaLimite": "2025-04-03",
           "estado": "completado"
         }
       ]
@@ -63,6 +70,13 @@
       "nombre": "Sprint 2",
       "fechaInicio": "2025-04-25",
       "fechaFin": "2025-04-27",
+      "tareas": []
+    },
+    {
+      "id": "5",
+      "nombre": "hft",
+      "fechaInicio": "2025-04-01",
+      "fechaFin": "2025-05-09",
       "tareas": []
     }
   ]

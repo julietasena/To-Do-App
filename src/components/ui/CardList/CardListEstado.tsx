@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { ITarea } from "../../../types/ITarea";
-import { Edit, Eye, Trash2, MoveLeft, MoveRight } from "lucide-react";
+import { Edit, Eye, Trash2,  MoveRight } from "lucide-react";
 import { useTareas } from "../../../hooks/useTareas";
 import { BackLogDropdownButton } from "../Dropdown/BackLogDropdownButton";
 
@@ -13,7 +13,7 @@ export const CardListEstado: FC<ICardList> = ({
   tarea,
   handleOpenModalEdit,
 }) => {
-  const { eliminarTarea, verTarea } = useTareas();
+  const { eliminarTarea, verTarea, cambiarEstado } = useTareas();
 
   const eliminarTareaById = () => {
     eliminarTarea(tarea.id!);
@@ -35,7 +35,8 @@ export const CardListEstado: FC<ICardList> = ({
     <h3 className="font-semibold line-clamp-1">{tarea.titulo}</h3>
   </div>
 
-  <MoveRight className="cursor-pointer text-gray-500 hover:text-black ml-2" size={25} />
+  <MoveRight className="cursor-pointer text-gray-500 hover:text-black ml-2" size={25} onClick={(e) => { cambiarEstado(tarea); }}
+  />
 </div>
 
         <div className="flex-grow">

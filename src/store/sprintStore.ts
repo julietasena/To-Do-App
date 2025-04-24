@@ -22,6 +22,8 @@ interface ISprintStore {
    eliminarUnSprint: (idSprint: string) => void;
    
    asignarTareaASprint: (tarea: ITarea, sprintId: string) => Promise<void>;
+
+   actualizarSprintActivo: (sprintActualizado: ISprint) => void;
 }
 
 export const sprintStore = create<ISprintStore>((set, get) => ({
@@ -86,6 +88,18 @@ export const sprintStore = create<ISprintStore>((set, get) => ({
     
             return { sprints: sprintsActualizados };
         });
-    }
+    },
+    
+    actualizarSprintActivo: (sprintActualizado) => set((state) => {
+        // Actualizar en el array de sprints
+        const arregloSprints = state.sprints.map((sprint) =>
+            sprint.id === sprintActualizado.id ? sprintActualizado : sprint
+        );
+        
+        return { 
+            sprints: arregloSprints,
+            sprintActivo: sprintActualizado 
+        };
+    })
     
 }));

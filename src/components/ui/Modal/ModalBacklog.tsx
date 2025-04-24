@@ -2,6 +2,8 @@ import { ChangeEvent, FC, FormEvent, useEffect, useState } from "react";
 import { tareaStore } from "../../../store/tareaStore";
 import { ITarea } from "../../../types/ITarea";
 import { useTareas } from "../../../hooks/useTareas";
+import { sprintStore } from "../../../store/sprintStore";
+import { useSprints } from "../../../hooks/useSprints";
 
 type IModal = {
     handleCloseModal: VoidFunction;
@@ -22,6 +24,7 @@ export const ModalBacklog: FC<IModal> = ({ handleCloseModal }) => {
 
     const [formValues, setFormValues] = useState<ITarea>(initialState);
 
+    const { editarTareaDeSprint } = useSprints();
 
     useEffect(() => {
         if (tareaActiva) {
@@ -40,17 +43,24 @@ export const ModalBacklog: FC<IModal> = ({ handleCloseModal }) => {
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
     
-        const generarId = () => `${Date.now()}-${Math.random().toString(36).substr(2, 5)}`; // Podés cambiar por las otras 2
+        const generarId = () => `${Date.now()}-${Math.random().toString(36).substr(2, 5)}`;
     
         if (tareaActiva) {
-            putTareaEditar(formValues);
+            const sprintActivo = sprintStore.getState().sprintActivo;
+            const perteneceASprint = sprintActivo?.tareas?.some(t => t.id === tareaActiva.id);
+    
+            if (perteneceASprint) {
+                editarTareaDeSprint(formValues); // ✅ sprint
+            } else {
+                putTareaEditar(formValues); // ✅ backlog
+            }
         } else {
             crearTarea({ ...formValues, id: generarId() });
         }
     
         setTareaActiva(null);
         handleCloseModal();
-    }
+    };
 
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black/50">

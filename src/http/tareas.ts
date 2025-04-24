@@ -15,7 +15,6 @@ export const getAllTareas = async () => {
 
 };
 
-
 export const postNuevaTarea = async (nuevaTarea: ITarea) => {
 
     try {
@@ -28,7 +27,6 @@ export const postNuevaTarea = async (nuevaTarea: ITarea) => {
     }
 
 };
-
 
 export const editarTarea = async (tareaActualizada: ITarea) => {
 

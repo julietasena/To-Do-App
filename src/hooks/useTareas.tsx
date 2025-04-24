@@ -3,6 +3,8 @@ import { tareaStore } from "../store/tareaStore"
 import { editarTarea, eliminarTareaPorId, getAllTareas, postNuevaTarea } from "../http/tareas";
 import { ITarea } from "../types/ITarea";
 import Swal from "sweetalert2";
+import { useSprints } from "./useSprints";
+import { sprintStore } from "../store/sprintStore";
 
 
 export const useTareas = () => {
@@ -23,6 +25,7 @@ export const useTareas = () => {
         editarUnaTarea: state.editarUnaTarea,
     }))
 );
+    const { editarTareaDeSprint } = useSprints();
 
     const getTareas = async () => {
         const data = await getAllTareas();
@@ -155,6 +158,27 @@ export const useTareas = () => {
         });
     };
 
+    const cambiarEstado = async (tarea: ITarea) => {
+  const nuevoEstado =
+    tarea.estado === "porHacer" ? "enProceso" :
+    tarea.estado === "enProceso" ? "completado" :
+    null;
+
+  if (!nuevoEstado) return;
+
+  const tareaEditada = { ...tarea, estado: nuevoEstado };
+
+  // Verificamos si la tarea está en sprintActivo.tareas
+  const sprintActivo = sprintStore.getState().sprintActivo;
+  const perteneceASprint = sprintActivo?.tareas?.some(t => t.id === tarea.id);
+
+  if (perteneceASprint) {
+    await editarTareaDeSprint(tareaEditada);
+  } else {
+    await putTareaEditar(tareaEditada); // backlog
+  }
+};
+    
     return {
         getTareas,
         crearTarea,
@@ -162,5 +186,6 @@ export const useTareas = () => {
         eliminarTarea,
         verTarea,
         tareas,
+        cambiarEstado
     };
 };

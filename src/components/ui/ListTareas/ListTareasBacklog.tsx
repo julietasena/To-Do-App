@@ -54,17 +54,21 @@ export const ListTareasBacklog = () => {
 
                 <div className=" bg-[#87c38f]/70 rounded-2xl p-4 mi-h-screen h-full">
 
-                    {tareas.length > 0 ? (
-                        tareas.map((el) =>
-                            <CardListBacklog
-                                handleOpenModalEdit={handleOpenModalEdit}
-                                tarea={el} />)
-                    ) : (
-                        <div>
-                            <h3>No hay tareas</h3>
-                        </div>
-
-                    )}
+                {tareas.filter((el) => el.estado === null).length > 0 ? (
+      tareas
+        .filter((el) => el.estado === null)
+        .map((el) => (
+          <CardListBacklog
+            key={el.id}
+            handleOpenModalEdit={handleOpenModalEdit}
+            tarea={el}
+          />
+        ))
+    ) : (
+      <div>
+        <h3>No hay tareas en el backlog</h3>
+      </div>
+    )}
 
                 </div>
             </div>
