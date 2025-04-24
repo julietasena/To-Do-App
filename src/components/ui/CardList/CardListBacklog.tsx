@@ -32,9 +32,12 @@ export const CardListBacklog: FC<ICardList> = ({
         verTarea(tarea.id!);  
     };
 
+<<<<<<< HEAD
     const handleSprintAsignado = (sprintId: string) => {
       sprintStore.getState().asignarTareaASprint(tarea, sprintId);
     };
+=======
+>>>>>>> 98723762e70561cd8937899b242bd9de631b76c0
   
     return (
 

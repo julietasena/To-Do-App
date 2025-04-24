@@ -13,13 +13,8 @@
       "descripcion": "Hacer tal cosa",
       "fechaLimite": "2025-04-14",
       "estado": null
-    },
-    {
-      "id": "1745462244037-t0rys",
-      "titulo": "Nueva tarea",
-      "descripcion": "Es una muy importante",
-      "fechaLimite": "2025-04-25"
     }
+
   ],
   "sprints": [
     {
@@ -38,25 +33,10 @@
       ]
     },
     {
-      "id": "2",
-      "nombre": "Sprint 2",
-      "fechaInicio": "2025-05-06",
-      "fechaFin": "2025-05-19",
-      "tareas": [
-        {
-          "id": "2",
-          "titulo": "Crear un boton para eliminar tarea",
-          "descripcion": "Estoy editando la tarea numero 2",
-          "fechaLimite": "2025-03-21",
-          "estado": "porHacer"
-        }
-      ]
-    },
-    {
       "id": "3",
       "nombre": "Sprint 3",
-      "fechaInicio": "2025-04-25",
-      "fechaFin": "2025-05-25",
+      "fechaInicio": "2025-04-30",
+      "fechaFin": "2025-05-08",
       "tareas": []
     }
   ]
