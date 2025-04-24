@@ -1,21 +1,17 @@
-import { Link } from "react-router";
-
+import { Link } from "react-router-dom";
 
 interface SprintProps {
-  id: string;
   title: string;
+  subTitle: string;  // Nueva propiedad para el subtítulo
 }
 
-export const HeaderSprint: React.FC<SprintProps> = ({title }) => {
-
-  
-
+export const HeaderSprint: React.FC<SprintProps> = ({ title, subTitle }) => {
   return (
     <div>
-
       <div className="flex justify-between items-center mb-6">
         <div className="flex-1"></div>
         <h1 className="text-4xl font-bold text-center font-mono flex-2">{title}</h1>
+        <h2 className="text-2xl font-semibold text-center">{subTitle}</h2> {/* Subtítulo agregado */}
         <div className="flex-1 text-right">
           {/* Botón para cambiar a la pantalla de Backlog */}
           <Link
@@ -26,7 +22,6 @@ export const HeaderSprint: React.FC<SprintProps> = ({title }) => {
           </Link>
         </div>
       </div>
-
     </div>
-  )
-}
+  );
+};

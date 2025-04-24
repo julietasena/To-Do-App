@@ -88,24 +88,31 @@ export const useTareas = () => {
         const tarea = tareas.find((tarea) => tarea.id === idTarea);
 
         if (!tarea) {
-            Swal.fire("Error", "No se encontró la tarea", "error");
+            Swal.fire({
+                title: "Error",
+                text: "No se encontró la tarea",
+                icon: "error",
+                confirmButtonColor: "#226f54",
+                customClass: {
+                    popup: 'rounded-lg shadow-md border border-[#226f54]',
+                    confirmButton: 'bg-[#226f54] text-white px-4 py-2 rounded-md hover:bg-[#1b5944] transition'
+                },
+                buttonsStyling: false
+            });
             return;
         }
-
-
+        
         const fechaLimite = new Date(tarea.fechaLimite);
         const hoy = new Date();
-
-
+        
         fechaLimite.setHours(0, 0, 0, 0);
         hoy.setHours(0, 0, 0, 0);
-
+        
         const diferenciaTiempo = fechaLimite.getTime() - hoy.getTime();
         const diasRestantes = Math.ceil(diferenciaTiempo / (1000 * 3600 * 24));
-
-
+        
         let mensajeDias = "";
-
+        
         if (diasRestantes < 0) {
             mensajeDias = `<span class="text-red-500 font-semibold">La tarea está vencida por ${Math.abs(diasRestantes)} día(s)</span>`;
         } else if (diasRestantes === 0) {
@@ -113,32 +120,39 @@ export const useTareas = () => {
         } else {
             mensajeDias = `<span class="text-[#504136] font-semibold">Faltan ${diasRestantes} día(s)</span>`;
         }
+        
         Swal.fire({
-            title: "Detalles de la tarea",
+            title: '<h2 class="text-center text-[#226f54] text-lg font-bold mb-4">Detalles de la tarea</h2>',
             html: `
-              <div class="flex flex-col space-y-3 text-left">
-                <div>
-                  <label class="block font-semibold text-[#226f54]">Título</label>
-                  <p class="rounded-md px-3 py-2 bg-gray-50">${tarea.titulo}</p>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block font-semibold text-[#226f54]">Título</label>
+                        <p class="w-full p-2 border border-[#226f54] text-[#226f54] rounded-md">${tarea.titulo}</p>
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-[#226f54]">Descripción</label>
+                        <p class="w-full p-2 border border-[#226f54] text-[#226f54] rounded-md">${tarea.descripcion}</p>
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-[#226f54]">Fecha límite</label>
+                        <p class="w-full p-2 border border-[#226f54] text-[#226f54] rounded-md">${tarea.fechaLimite}</p>
+                        <p class="w-full p-2 text-[#226f54] rounded-md">${mensajeDias}</p>
+                    </div>
                 </div>
-                <div>
-                  <label class="block font-semibold text-[#226f54]">Descripción</label>
-                  <p class="rounded-md px-3 py-2 bg-gray-50">${tarea.descripcion}</p>
-                </div>
-                <div>
-                  <label class="block font-semibold text-gray-700">Fecha límite</label>
-                  <p class=" rounded-md px-3 py-2 bg-gray-50">${tarea.fechaLimite}</p>
-                  <p class="rounded-md px-3 py-2 bg-gray-50">${mensajeDias}</p>
-                </div>
-                
-              </div>
             `,
-            showCancelButton: false,
+            showCancelButton: true,
             confirmButtonText: "Cerrar",
-            // Color y estilo principal del botón
-            confirmButtonColor: "#226f54", // Ajusta al color verde que uses en tu proyecto
-
-        })
+            cancelButtonText: "Volver",
+            confirmButtonColor: "#226f54",
+            customClass: {
+                popup: 'rounded-lg shadow-md border border-[#226f54] w-[28rem]',
+                confirmButton: 'bg-[#226f54] text-white px-4 py-2 rounded-md hover:bg-[#1b5944] transition',
+                cancelButton: 'bg-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-400 transition',
+                actions: 'flex justify-between mt-4',
+                title: 'text-[#226f54]',
+            },
+            buttonsStyling: false
+        });
     };
 
     return {

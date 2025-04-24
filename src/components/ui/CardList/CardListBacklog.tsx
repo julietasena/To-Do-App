@@ -1,6 +1,6 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import { ITarea } from "../../../types/ITarea";
-import { ChevronDown, Edit, Eye, Trash2 } from "lucide-react";
+import { Edit, Eye, Trash2 } from "lucide-react";
 import { useTareas } from "../../../hooks/useTareas";
 import { sprintStore } from "../../../store/sprintStore";
 import SprintDropdownButton from "../Dropdown/SprintDropdownButton";
@@ -10,7 +10,6 @@ type ICardList = {
     tarea: ITarea;
     handleOpenModalEdit: (tarea: ITarea) => void;
 }
-
 
 export const CardListBacklog: FC<ICardList> = ({ 
     tarea, 
@@ -58,22 +57,12 @@ export const CardListBacklog: FC<ICardList> = ({
 
                     <Eye className="text-gray-500 cursor-pointer hover:text-blue-500" size={20} onClick={verDetalleTarea}/>
 
-                    <Edit
-                        className="text-gray-500 cursor-pointer hover:text-yellow-500" size={20}
-                        onClick={editarTarea}
-                    />
+                    <Edit className="text-gray-500 cursor-pointer hover:text-yellow-500" size={20} onClick={editarTarea}/>
 
-                    <Trash2
-                        className="text-gray-500 cursor-pointer hover:text-red-500" size={20}
-                        onClick={eliminarTareaById}
-                    />
+                    <Trash2 className="text-gray-500 cursor-pointer hover:text-red-500" size={20} onClick={eliminarTareaById}/>
                 </div>
             </div>
             
         </div>
-
-
-
-
     )
 }

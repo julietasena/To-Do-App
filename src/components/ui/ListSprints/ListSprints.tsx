@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { getAllSprints } from '../../../http/sprints';
-import { sprintStore } from '../../../store/sprintStore';
-import { CardListSprint } from '../CardList/CardListSprint';
-import { ISprint } from '../../../types/ISprint'; 
+import React, { useEffect, useState } from "react";
+import { getAllSprints } from "../../../http/sprints";
+import { sprintStore } from "../../../store/sprintStore";
+import { CardListSprint } from "../CardList/CardListSprint";
+import { ISprint } from "../../../types/ISprint";
 import { ModalSprint } from "../Modal/ModalSprint"; // <- import corregido
 
 const ListSprints: React.FC = () => {
@@ -10,11 +10,14 @@ const ListSprints: React.FC = () => {
   const setSprintActivo = sprintStore((state) => state.setSprintActivo);
   const setArraySprints = sprintStore((state) => state.setArraySprints);
 
-  const [openModalEdit, setOpenModalEdit] = useState(false); 
+  const [openModalEdit, setOpenModalEdit] = useState(false);
 
   const handleOpenModalEdit = (sprint: ISprint) => {
     setSprintActivo(sprint);
-    setOpenModalEdit(true); 
+    setOpenModalEdit(true);
+  };
+  const handleOpenModal = (sprint: ISprint) => {
+    setSprintActivo(sprint);
   };
 
   const handleCloseModal = () => {
@@ -42,24 +45,32 @@ const ListSprints: React.FC = () => {
 
   return (
     <div>
-      <h2 className="text-xl font-bold mb-4 justify-self-center font-mono">LISTA DE SPRINTS</h2>
+      <h2 className="text-xl font-bold mb-4 justify-self-center font-mono">
+        LISTA DE SPRINTS
+      </h2>
 
       {sprints.length > 0 ? (
         sprints.map((sprint: ISprint) => (
           <div key={sprint.id} className="flex flex-col">
-            <CardListSprint handleOpenModalEdit={handleOpenModalEdit} sprint={sprint} />
+            <CardListSprint
+              handleOpenModalEdit={handleOpenModalEdit}
+              sprint={sprint}
+              handleOpenModal={handleOpenModal}
+            />
           </div>
         ))
       ) : (
         <div>No hay sprints disponibles</div>
       )}
 
-      <button
-        className="bg-[#504136] text-white px-4 py-2 rounded-full"
-        onClick={handleCrearSprint}
-      >
-        Crear Sprint <span className="ml-2">+ </span>
-      </button>
+      <div className="flex justify-center mt-8">
+        <button
+          className="bg-[#504136] text-white px-4 py-2 rounded-full cursor-pointer"
+          onClick={handleCrearSprint}
+        >
+          Crear Sprint <span className="ml-2">+</span>
+        </button>
+      </div>
 
       {openModalEdit && <ModalSprint handleCloseModal={handleCloseModal} />}
     </div>
@@ -67,5 +78,3 @@ const ListSprints: React.FC = () => {
 };
 
 export default ListSprints;
-
-

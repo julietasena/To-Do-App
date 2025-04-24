@@ -13,6 +13,12 @@
       "descripcion": "Hacer tal cosa",
       "fechaLimite": "2025-04-14",
       "estado": null
+    },
+    {
+      "id": "1745512806767-u276v",
+      "titulo": "Tarea Sprint 2.1",
+      "descripcion": "e",
+      "fechaLimite": "2025-05-02"
     }
   ],
   "sprints": [
@@ -25,9 +31,23 @@
         {
           "id": "2",
           "titulo": "Crear un boton para eliminar tarea",
-          "descripcion": "Estoy editando la tarea numero 2",
+          "descripcion": "Estoy editando la tarea numero 2hhhhh hhh hhh hhhh hhhhhhhh hhhhh hhhhhh hhhhhhhhhhhhhhhhhhhh",
           "fechaLimite": "2025-03-21",
           "estado": "porHacer"
+        },
+        {
+          "id": "23269",
+          "titulo": "Crear un boton para eliminar tarea",
+          "descripcion": "Estoy editando la tarea numero 2",
+          "fechaLimite": "2025-03-21",
+          "estado": null
+        },
+        {
+          "id": "258",
+          "titulo": "Crear completo",
+          "descripcion": "Estoy editando la tarea numero 2",
+          "fechaLimite": "2025-03-21",
+          "estado": "completado"
         }
       ]
     },
