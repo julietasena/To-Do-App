@@ -15,7 +15,7 @@ export const CardListSprint: FC<ICardListSprint> = ({
   handleOpenModalEdit,
   handleOpenModal
 }) => {
-  const { eliminarSprint} = useSprints();
+  const { eliminarSprint, verSprint} = useSprints();
 
   const eliminarSprintPorId = () => {
     eliminarSprint(sprint.id!);
@@ -26,7 +26,7 @@ export const CardListSprint: FC<ICardListSprint> = ({
   };
 
   const verDetalleSprint = () => {
-    //verSprint(sprint.id!);
+    verSprint(sprint.id!);
   };
   const sprintActivo = () => {
     handleOpenModal(sprint);

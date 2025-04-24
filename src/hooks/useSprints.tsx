@@ -103,5 +103,116 @@ export const useSprints = () => {
     }
   };
   
-  return { getSprints, crearSprint, putSprintEditar, eliminarSprint, editarTareaDeSprint };
+  const verSprint = (sprintId: string) => {
+    const { sprints } = sprintStore.getState();
+  
+    const sprint = sprints.find((s) => s.id === sprintId);
+  
+    if (!sprint) {
+      Swal.fire({
+        title: "Error",
+        text: "No se encontró el sprint",
+        icon: "error",
+        confirmButtonColor: "#226f54",
+      });
+      return;
+    }
+  
+    const tareasHtml = sprint.tareas && sprint.tareas.length > 0
+      ? sprint.tareas.map(t => `
+        <li class="mb-2">
+          <span class="font-semibold text-[#226f54]">${t.titulo}</span>
+          <span class="ml-2 px-2 py-0.5 text-sm rounded bg-gray-200 text-gray-800">${t.estado ?? "sin estado"}</span>
+        </li>
+      `).join("")
+      : "<li>No hay tareas en este sprint</li>";
+  
+    Swal.fire({
+      title: `<h2 class="text-center text-[#226f54] text-lg font-bold mb-2">${sprint.nombre}</h2>`,
+      html: `
+        <div class="text-left space-y-2">
+          <p><strong>Inicio:</strong> ${sprint.fechaInicio}</p>
+          <p><strong>Fin:</strong> ${sprint.fechaFin}</p>
+          <div>
+            <p class="font-semibold text-[#226f54] mt-4">Tareas:</p>
+            <ul class="list-disc pl-5 mt-2">${tareasHtml}</ul>
+          </div>
+        </div>
+      `,
+      confirmButtonText: "Cerrar",
+      confirmButtonColor: "#226f54",
+      customClass: {
+        popup: 'rounded-lg shadow-md border border-[#226f54] w-[32rem]',
+        confirmButton: 'bg-[#226f54] text-white px-4 py-2 rounded-md hover:bg-[#1b5944] transition',
+        title: 'text-[#226f54]',
+      },
+      buttonsStyling: false
+    });
+  };
+  
+
+  const verTareaDeSprint = (idTarea: string) => {
+    const sprintActivo = sprintStore.getState().sprintActivo;
+  
+    const tarea = sprintActivo?.tareas?.find((t) => t.id === idTarea);
+  
+    if (!tarea) {
+      Swal.fire({
+        title: "Error",
+        text: "No se encontró la tarea dentro del sprint",
+        icon: "error",
+        confirmButtonColor: "#226f54",
+      });
+      return;
+    }
+  
+    const fechaLimite = new Date(tarea.fechaLimite);
+    const hoy = new Date();
+    fechaLimite.setHours(0, 0, 0, 0);
+    hoy.setHours(0, 0, 0, 0);
+  
+    const diferencia = fechaLimite.getTime() - hoy.getTime();
+    const diasRestantes = Math.ceil(diferencia / (1000 * 3600 * 24));
+  
+    let mensajeDias = "";
+    if (diasRestantes < 0) {
+      mensajeDias = `<span class="text-red-500 font-semibold">Vencida por ${Math.abs(diasRestantes)} día(s)</span>`;
+    } else if (diasRestantes === 0) {
+      mensajeDias = `<span class="text-orange-500 font-semibold">Vence hoy</span>`;
+    } else {
+      mensajeDias = `<span class="text-green-700 font-semibold">Faltan ${diasRestantes} día(s)</span>`;
+    }
+  
+    Swal.fire({
+      title: '<h2 class="text-center text-[#226f54] text-lg font-bold mb-4">Tarea del Sprint</h2>',
+      html: `
+        <div class="space-y-4">
+          <div>
+            <label class="block font-semibold text-[#226f54]">Título</label>
+            <p class="w-full p-2 border border-[#226f54] text-[#226f54] rounded-md">${tarea.titulo}</p>
+          </div>
+          <div>
+            <label class="block font-semibold text-[#226f54]">Descripción</label>
+            <p class="w-full p-2 border border-[#226f54] text-[#226f54] rounded-md">${tarea.descripcion}</p>
+          </div>
+          <div>
+            <label class="block font-semibold text-[#226f54]">Fecha límite</label>
+            <p class="w-full p-2 border border-[#226f54] text-[#226f54] rounded-md">${tarea.fechaLimite}</p>
+            <p class="w-full p-2 text-[#226f54] rounded-md">${mensajeDias}</p>
+          </div>
+        </div>
+      `,
+      confirmButtonText: "Cerrar",
+      confirmButtonColor: "#226f54",
+      customClass: {
+        popup: 'rounded-lg shadow-md border border-[#226f54] w-[28rem]',
+        confirmButton: 'bg-[#226f54] text-white px-4 py-2 rounded-md hover:bg-[#1b5944] transition',
+        title: 'text-[#226f54]',
+      },
+      buttonsStyling: false
+    });
+  };
+  
+
+  return { getSprints, crearSprint, putSprintEditar, eliminarSprint, editarTareaDeSprint,verTareaDeSprint,verSprint };
 };

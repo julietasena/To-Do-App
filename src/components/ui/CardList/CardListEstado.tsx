@@ -3,6 +3,7 @@ import { ITarea } from "../../../types/ITarea";
 import { Edit, Eye, Trash2,  MoveRight } from "lucide-react";
 import { useTareas } from "../../../hooks/useTareas";
 import { BackLogDropdownButton } from "../Dropdown/BackLogDropdownButton";
+import { useSprints } from "../../../hooks/useSprints";
 
 type ICardList = {
   tarea: ITarea;
@@ -13,7 +14,7 @@ export const CardListEstado: FC<ICardList> = ({
   tarea,
   handleOpenModalEdit,
 }) => {
-  const { eliminarTarea, verTarea, cambiarEstado } = useTareas();
+  const { eliminarTarea,  cambiarEstado } = useTareas();
 
   const eliminarTareaById = () => {
     eliminarTarea(tarea.id!);
@@ -23,9 +24,7 @@ export const CardListEstado: FC<ICardList> = ({
     handleOpenModalEdit(tarea);
   };
 
-  const verDetalleTarea = () => {
-    verTarea(tarea.id!);
-  };
+  const {verTareaDeSprint} = useSprints();
 
   return (
     <div className="bg-white/75 rounded-xl shadow-md mb-3 p-4 flex flex-wrap md:flex-nowrap">
@@ -52,7 +51,7 @@ export const CardListEstado: FC<ICardList> = ({
             <Eye
               className="text-gray-500 cursor-pointer hover:text-blue-500"
               size={20}
-              onClick={verDetalleTarea}
+              onClick={verTareaDeSprint(tarea.id!)}
             />
             <Edit
               className="text-gray-500 cursor-pointer hover:text-yellow-500"
