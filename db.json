@@ -17,20 +17,33 @@
       "titulo": "Pruebo otra",
       "descripcion": "Hacer tal cosa",
       "fechaLimite": "2025-04-14"
+    },
+    {
+      "id": "Wed Apr 23 2025",
+      "titulo": "Titulo",
+      "descripcion": "frf",
+      "fechaLimite": "2025-04-23"
     }
   ],
   "sprints": [
     {
-      "id": "1",
-      "nombre": "Sprint 1",
-      "fechaInicio": "2025-04-22",
-      "fechaFin": "2025-05-05"
-    },
-    {
       "id": "2",
-      "nombre": "Sprint 2",
+      "nombre": "Sprint 2 Editado",
       "fechaInicio": "2025-05-06",
       "fechaFin": "2025-05-19"
+    },
+    {
+      "id": "1",
+      "nombre": "Sprint 1",
+      "fechaInicio": "2025-05-06",
+      "fechaFin": "2025-05-19"
+    },
+    {
+      "id": "3",
+      "nombre": "Sprint nuevo",
+      "fechaInicio": "2025-04-30",
+      "fechaFin": "2025-05-08",
+      "tareas": []
     }
   ]
 }

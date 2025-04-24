@@ -1,19 +1,39 @@
-import React, { useEffect } from 'react';
-import { Eye, Edit, Trash2 } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
 import { getAllSprints } from '../../../http/sprints';
 import { sprintStore } from '../../../store/sprintStore';
+import { CardListSprint } from '../CardList/CardListSprint';
+import { ISprint } from '../../../types/ISprint'; 
+import { ModalSprint } from "../Modal/ModalSprint"; // <- import corregido
 
 const ListSprints: React.FC = () => {
-
-  const sprints = sprintStore((state) => state.sprints)
-
-  const setSprintActivo = sprintStore((state) => state.setSprintActivo)
+  const sprints = sprintStore((state) => state.sprints);
+  const setSprintActivo = sprintStore((state) => state.setSprintActivo);
   const setArraySprints = sprintStore((state) => state.setArraySprints);
 
+  const [openModalEdit, setOpenModalEdit] = useState(false); 
+
+  const handleOpenModalEdit = (sprint: ISprint) => {
+    setSprintActivo(sprint);
+    setOpenModalEdit(true); // <- faltaba esto
+  };
+
+  const handleCloseModal = () => {
+    setOpenModalEdit(false);
+    setSprintActivo(null);
+  };
+
+  const handleCrearSprint = () => {
+    setSprintActivo(null); // para que no cargue un sprint activo
+    setOpenModalEdit(true);
+  };
 
   const getSprints = async () => {
-    const data = await getAllSprints();
-    if (data) setArraySprints(data);
+    try {
+      const data = await getAllSprints();
+      if (data) setArraySprints(data);
+    } catch (error) {
+      console.error("Error al obtener los sprints", error);
+    }
   };
 
   useEffect(() => {
@@ -23,30 +43,29 @@ const ListSprints: React.FC = () => {
   return (
     <div>
       <h2 className="text-xl font-bold mb-4 justify-self-center font-mono">LISTA DE SPRINTS</h2>
-      {sprints.length > 0 ? (
-        sprints.map((sprint) => (
-        <div
-          key={sprint.id}
-          className="bg-white/70 rounded-2xl shadow-md mb-5 p-3 flex flex-col"
-        >
-          <h3 className="font-semibold text-center">{sprint.nombre}</h3>
-          <div className="flex mt-2">
-            <p className="text-sm text-[#504136]"> {sprint.fechaInicio}</p>
-            <p className="text-sm text-[#504136] ml-4"> {sprint.fechaFin}</p>
-            <div className="flex items-center space-x-3 ml-4">
-              <Eye className="text-gray-500 cursor-pointer hover:text-blue-500" size={20} />
-              <Edit className="text-gray-500 cursor-pointer hover:text-yellow-500" size={20} />
-              <Trash2 className="text-gray-500 cursor-pointer hover:text-red-500" size={20} />
-            </div>
-          </div>
 
-        </div>
+      {sprints.length > 0 ? (
+        sprints.map((sprint: ISprint) => (
+          <div key={sprint.id} className="flex flex-col">
+            <CardListSprint handleOpenModalEdit={handleOpenModalEdit} sprint={sprint} />
+          </div>
         ))
       ) : (
         <div>No hay sprints disponibles</div>
       )}
+
+      <button
+        className="bg-[#504136] text-white px-4 py-2 rounded-full"
+        onClick={handleCrearSprint}
+      >
+        Crear tarea <span className="ml-2">+ </span>
+      </button>
+
+      {openModalEdit && <ModalSprint handleCloseModal={handleCloseModal} />}
     </div>
   );
 };
 
 export default ListSprints;
+
+

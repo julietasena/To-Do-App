@@ -1,0 +1,50 @@
+import { FC } from "react";
+import { ISprint } from "../../../types/ISprint";
+import { ChevronDown, Edit, Eye, Trash2 } from "lucide-react";
+import { useSprints } from "../../../hooks/useSprints";
+import { sprintStore } from "../../../store/sprintStore";
+import { eliminarSprintPorId } from "../../../http/sprints";
+
+type ICardListSprint = {
+  sprint: ISprint;
+  handleOpenModalEdit: (sprint: ISprint) => void;
+};
+
+export const CardListSprint: FC<ICardListSprint> = ({
+  sprint,
+  handleOpenModalEdit,
+}) => {
+  const { eliminarSprint} = useSprints();
+
+  const eliminarSprintPorId = () => {
+    eliminarSprint(sprint.id!);
+  };
+  const sprints = sprintStore((state) => state.sprints);
+  const editarSprint = () => {
+    handleOpenModalEdit(sprint);
+  };
+
+  const verDetalleSprint = () => {
+    //verSprint(sprint.id!);
+  };
+
+  
+   return (
+       <div>
+         <div className="bg-white/70 rounded-2xl shadow-md mb-5 p-3 flex flex-col">
+             <h3 className="font-semibold text-center">{sprint.nombre}</h3>
+             <div className="flex mt-2">
+               <p className="text-sm text-[#504136]"> {sprint.fechaInicio}</p>
+               <p className="text-sm text-[#504136] ml-4"> {sprint.fechaFin}</p>
+               <div className="flex items-center space-x-3 ml-4">
+                 <Eye className="text-gray-500 cursor-pointer hover:text-blue-500" size={20} onClick={verDetalleSprint}/>
+                 <Edit className="text-gray-500 cursor-pointer hover:text-yellow-500" size={20} onClick={editarSprint}/>
+                 <Trash2 className="text-gray-500 cursor-pointer hover:text-red-500" size={20} onClick={eliminarSprintPorId} />
+               </div>
+             </div>
+   
+           </div>
+       </div>
+     );
+   };
+   

@@ -5,8 +5,7 @@ export interface ISprint {
     nombre: string
     fechaInicio: string
     fechaFin: string
-    porHacer?: ITarea[]
-    enProceso?: ITarea[]
-    completado?: ITarea[]
+    tareas?: ITarea[]
+   
   }
   

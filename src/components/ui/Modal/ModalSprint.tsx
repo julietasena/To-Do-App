@@ -11,9 +11,7 @@ const initialState: ISprint = {
     nombre: "",
     fechaInicio: "",
     fechaFin: "",
-    porHacer: [],
-    enProceso: [],
-    completado: [],
+    tareas: [],
 };
 
 export const ModalSprint: FC<IModal> = ({ handleCloseModal }) => {
@@ -37,19 +35,26 @@ export const ModalSprint: FC<IModal> = ({ handleCloseModal }) => {
     };
 
     const handleSubmit = (e: FormEvent) => {
-        e.preventDefault();
+    e.preventDefault();
 
-        const generarId = () => `${Date.now()}-${Math.random().toString(36).substr(2, 5)}`;
-
-        if (sprintActivo) {
-            putSprintEditar(formValues);
-        } else {
-            crearSprint({ ...formValues, id: generarId() });
-        }
-
-        setSprintActivo(null);
-        handleCloseModal();
+    const generarId = (sprints: ISprint[]): number => {
+        const ids = sprints.map((s) => Number(s.id));
+        const maxId = ids.length > 0 ? Math.max(...ids) : 0;
+        return maxId + 1;
     };
+
+    const sprints = sprintStore.getState().sprints; // <- obtenés los sprints actuales
+
+    if (sprintActivo) {
+        putSprintEditar(formValues);
+    } else {
+        crearSprint({ ...formValues, id: generarId(sprints).toString() });
+    }
+
+    setSprintActivo(null);
+    handleCloseModal();
+};
+
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black/50">
             <form
@@ -94,7 +99,7 @@ export const ModalSprint: FC<IModal> = ({ handleCloseModal }) => {
                         type="button"
                         className="bg-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-400 transition"
                         onClick={handleCloseModal}
-                    >
+                        >
                         Cancelar
                     </button>
                     <button

@@ -45,16 +45,11 @@ export const ListTareasBacklog = () => {
             <div className=" bg-[#87c38f]/70 rounded-2xl p-4 mi-h-screen h-full">
                 <div className="flex justify-between items-center mb-6">
                     <h2 className="text-xl font-bold">Tareas en el backlog</h2>
-                    <button
-                        className="bg-[#504136] text-white px-4 py-2 rounded-full"
-                        onClick={() => {
-                            setOpenModalTarea(true);
-                        }}
-                    >
+                    <button className="bg-[#504136] text-white px-4 py-2 rounded-full"
+                        onClick={() => {setOpenModalTarea(true);}}>
                         Crear tarea
-                        <span className="ml-2">
-                            +
-                        </span></button>
+                        <span className="ml-2">+ </span>
+                        </button>
                 </div>
 
                 <div className=" bg-[#87c38f]/70 rounded-2xl p-4 mi-h-screen h-full">
