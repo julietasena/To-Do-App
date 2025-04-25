@@ -50,8 +50,9 @@ export const CardListBacklog: FC<ICardList> = ({
             </div>
             <div className="flex items-center space-x-3">
                 <span className="text-sm"> {tarea.fechaLimite}</span>
-
-                <SprintDropdownButton onAssignSprint={handleSprintAsignado} />
+                
+                <SprintDropdownButton onAssignSprint={handleSprintAsignado}  />
+              
 
                 <div className="flex space-x-2">
 

@@ -25,7 +25,8 @@ export const useTareas = () => {
         editarUnaTarea: state.editarUnaTarea,
     }))
 );
-    const { editarTareaDeSprint } = useSprints();
+   
+    const { editarTareaDeSprint, putSprintEditar } = useSprints();
 
     const getTareas = async () => {
         const data = await getAllTareas();
@@ -61,31 +62,50 @@ export const useTareas = () => {
     };
 
     const eliminarTarea = async (idTarea: string) => {
-
-        const estadoPrevio = tareas.find((el) => el.id === idTarea);
-
+        const { sprintActivo, setSprintActivo } = sprintStore.getState();
+        const perteneceASprint = sprintActivo?.tareas?.some((t) => t.id === idTarea);
+      
         const confirm = await Swal.fire({
-            title: "¿Estás seguro?",
-            text: "Esta acción no se puede deshacer",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonText: "Si, eliminar",
-            cancelButtonText: "Cancelar",
+          title: "¿Estás seguro?",
+          text: perteneceASprint
+            ? "Esta tarea será eliminada del sprint activo"
+            : "Esta acción no se puede deshacer",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonText: "Sí, eliminar",
+          cancelButtonText: "Cancelar",
         });
-
+      
         if (!confirm.isConfirmed) return;
-
-        eliminarUnaTarea(idTarea);
-
-        try {
+      
+        if (perteneceASprint && sprintActivo) {
+          // 1. Remover tarea del sprint activo
+          const tareasActualizadas = sprintActivo.tareas?.filter((t) => t.id !== idTarea) || [];
+          const sprintActualizado = { ...sprintActivo, tareas: tareasActualizadas };
+      
+          try {
+            await putSprintEditar(sprintActualizado);
+            setSprintActivo(sprintActualizado);
+            Swal.fire("Eliminado", "Tarea eliminada del sprint correctamente", "success");
+          } catch (error) {
+            console.log("Error al eliminar tarea del sprint");
+            Swal.fire("Error", "No se pudo eliminar la tarea del sprint", "error");
+          }
+      
+        } else {
+          // Tarea normal del backlog
+          const estadoPrevio = tareas.find((el) => el.id === idTarea);
+          eliminarUnaTarea(idTarea);
+      
+          try {
             await eliminarTareaPorId(idTarea);
-            Swal.fire("Eliminando", "Tarea eliminada correctamente", "success");
-        } catch (error) {
+            Swal.fire("Eliminado", "Tarea eliminada correctamente", "success");
+          } catch (error) {
             if (estadoPrevio) agregarNuevaTarea(estadoPrevio);
-            console.log("Algo salió mal al eliminar")
+            console.log("Algo salió mal al eliminar del backlog");
+          }
         }
-
-    };
+      };
     
     const verTarea = (idTarea:string) => {
         const tarea = tareas.find((tarea) => tarea.id === idTarea);

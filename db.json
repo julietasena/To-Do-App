@@ -31,13 +31,6 @@
   ],
   "sprints": [
     {
-      "id": "1",
-      "nombre": "Sprint primero",
-      "fechaInicio": "2025-04-22",
-      "fechaFin": "2025-05-05",
-      "tareas": []
-    },
-    {
       "id": "3",
       "nombre": "Sprint 2.1",
       "fechaInicio": "2025-04-30",
@@ -53,7 +46,7 @@
         {
           "id": "1745499609461-kmf0q",
           "titulo": "qqqq",
-          "descripcion": "qqqq",
+          "descripcion": "qq",
           "fechaLimite": "2025-04-25",
           "estado": "porHacer"
         },
@@ -63,13 +56,6 @@
           "descripcion": "JJJJJJJJJJJJJJJJ",
           "fechaLimite": "2025-04-26",
           "estado": "porHacer"
-        },
-        {
-          "id": "1745512806767-u276v",
-          "titulo": "Tarea Sprint 2.1",
-          "descripcion": "Editando",
-          "fechaLimite": "2025-05-02",
-          "estado": "enProceso"
         }
       ]
     }
