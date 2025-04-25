@@ -10,7 +10,7 @@ export const HeaderBacklog = () => {
         <div className="flex justify-center items-center mb-6">
         <h1 className="text-4xl font-bold font-mono">BACKLOG</h1>
         <div className="flex-1 text-right">
-          {/* Botón para cambiar a la pantalla de Backlog */}
+         
        
           <Link
             to={`/sprints`}

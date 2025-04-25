@@ -168,7 +168,7 @@ export const useTareas = () => {
 
   const tareaEditada = { ...tarea, estado: nuevoEstado };
 
-  // Verificamos si la tarea está en sprintActivo.tareas
+
   const sprintActivo = sprintStore.getState().sprintActivo;
   const perteneceASprint = sprintActivo?.tareas?.some(t => t.id === tarea.id);
 

@@ -26,7 +26,7 @@ const ListSprints: React.FC = () => {
   };
 
   const handleCrearSprint = () => {
-    setSprintActivo(null); // para que no cargue un sprint activo
+    setSprintActivo(null); 
     setOpenModalEdit(true);
   };
 

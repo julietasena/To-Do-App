@@ -43,7 +43,7 @@ export const ModalSprint: FC<IModal> = ({ handleCloseModal }) => {
         return maxId + 1;
     };
 
-    const sprints = sprintStore.getState().sprints; // <- obtenés los sprints actuales
+    const sprints = sprintStore.getState().sprints; 
 
     if (sprintActivo) {
         putSprintEditar(formValues);

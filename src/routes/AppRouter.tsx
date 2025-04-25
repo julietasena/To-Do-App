@@ -13,11 +13,7 @@ export const AppRouter: React.FC = () => {
       <Routes>
         <Route path="/" element={<Navigate to="/sprints" />} />
         <Route path="/tareas" element={<BacklogScreen />} />
-
         <Route path="/sprints" element={<SprintScreen />} />
-
-
-
       </Routes>
     </BrowserRouter>
 

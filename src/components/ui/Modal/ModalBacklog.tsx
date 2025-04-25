@@ -50,9 +50,9 @@ export const ModalBacklog: FC<IModal> = ({ handleCloseModal }) => {
             const perteneceASprint = sprintActivo?.tareas?.some(t => t.id === tareaActiva.id);
     
             if (perteneceASprint) {
-                editarTareaDeSprint(formValues); // ✅ sprint
+                editarTareaDeSprint(formValues);
             } else {
-                putTareaEditar(formValues); // ✅ backlog
+                putTareaEditar(formValues); 
             }
         } else {
             crearTarea({ ...formValues, id: generarId() });
