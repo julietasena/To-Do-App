@@ -35,37 +35,14 @@
       "nombre": "Sprint primero",
       "fechaInicio": "2025-04-22",
       "fechaFin": "2025-05-05",
-      "tareas": [
-        {
-          "id": "23269",
-          "titulo": "Crear un boton para eliminar tarea",
-          "descripcion": "Estoy editando la tarea numero 2",
-          "fechaLimite": "2025-03-21",
-          "estado": null
-        },
-        {
-          "id": "1745512806767-u276v",
-          "titulo": "Tarea Sprint 2.1",
-          "descripcion": "e",
-          "fechaLimite": "2025-05-02",
-          "estado": "porHacer"
-        }
-      ]
+      "tareas": []
     },
     {
       "id": "3",
       "nombre": "Sprint 2.1",
       "fechaInicio": "2025-04-30",
       "fechaFin": "2025-05-08",
-      "tareas": [
-        {
-          "id": "2",
-          "titulo": "Crear un boton para eliminar tarea",
-          "descripcion": "Estoy editando la tarea numero 2hhhhh hhh hhh ",
-          "fechaLimite": "2025-03-21",
-          "estado": "porHacer"
-        }
-      ]
+      "tareas": []
     },
     {
       "id": "4",
@@ -86,6 +63,13 @@
           "descripcion": "JJJJJJJJJJJJJJJJ",
           "fechaLimite": "2025-04-26",
           "estado": "porHacer"
+        },
+        {
+          "id": "1745512806767-u276v",
+          "titulo": "Tarea Sprint 2.1",
+          "descripcion": "Editando",
+          "fechaLimite": "2025-05-02",
+          "estado": "enProceso"
         }
       ]
     }

@@ -32,6 +32,10 @@ export const CardListEstado: FC<ICardList> = ({
 
   const {verTareaDeSprint} = useSprints();
 
+  const verDetalleTareaSprint = () => {
+    verTareaDeSprint(tarea.id!);
+  };
+
     return (
         <div className="bg-white/75 rounded-xl shadow-md mb-3 p-4 flex flex-wrap md:flex-nowrap">
             <div className="w-full  h-full">
@@ -61,7 +65,10 @@ export const CardListEstado: FC<ICardList> = ({
                         <Eye
                             className="text-gray-500 cursor-pointer hover:text-blue-500"
                             size={20}
-                            onClick={verTareaDeSprint(tarea.id!)}
+                            onClick={(e) => {
+                                e.stopPropagation(); 
+                                verDetalleTareaSprint();
+                              }}
                         />
                         <Edit
                             className="text-gray-500 cursor-pointer hover:text-yellow-500"
