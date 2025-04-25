@@ -3,5 +3,5 @@ export interface ITarea{
     titulo:string
     descripcion:string
     fechaLimite:string
-    estado?:string
+    estado:string | null
 }

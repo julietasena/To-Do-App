@@ -51,6 +51,8 @@ export const eliminarTareaPorId = async (idTarea:string) => {
         return response.data;
     } catch (error) {
         console.log(error);
+        throw error; 
     }
 
 };
+

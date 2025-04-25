@@ -6,10 +6,11 @@ import { ListEstado } from '../ui/ListSprints/ListEstado';
 
 
 
+
+
 const SprintScreen: React.FC = () => {
-  const selectedSprint = sprintStore((state) => state.sprintActivo); // Obtener el sprint activo desde el store
-
-
+const selectedSprint = sprintStore((state) => state.sprintActivo); 
+ 
   return (
     <div className="flex flex-col p-6">
       {/* Pasamos el título y la fecha límite al HeaderSprint */}

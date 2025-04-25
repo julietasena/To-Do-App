@@ -6,10 +6,15 @@ import { CardListEstado } from "../CardList/CardListEstado";
 import { sprintStore } from "../../../store/sprintStore";
 import { ModalBacklog } from "../Modal/ModalBacklog"; 
 
-export const ListEstado = () => {
+
+
+export const ListEstado = ()=> {
+  // Obtenemos el sprint activo y sus tareas
+
   const selectedSprint = sprintStore((state) => state.sprintActivo);
   const setTareaActiva = tareaStore((state) => state.setTareaActiva);
   const setArrayTareas = tareaStore((state) => state.setArrayTareas);
+  const tareas = tareaStore((state) => state.tareas);
 
   const getTareas = async () => {
     const data = await getAllTareas();
@@ -31,6 +36,8 @@ export const ListEstado = () => {
     setTareaActiva(null);
     setOpenModalTarea(false);
   };
+
+  
 
   const tareasPorHacer = selectedSprint?.tareas?.filter(t => t.estado === "porHacer") || [];
   const tareasEnProceso = selectedSprint?.tareas?.filter(t => t.estado === "enProceso") || [];
@@ -82,7 +89,7 @@ export const ListEstado = () => {
         </div>
       </div>
 
-      {/* ✅ Modal reutilizado para editar desde sprint */}
+
       {openModalTarea && <ModalBacklog handleCloseModal={handleCloseModal} />}
     </>
   );

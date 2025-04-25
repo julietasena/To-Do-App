@@ -3,6 +3,7 @@ import { ISprint } from "../types/ISprint";
 import { ITarea } from "../types/ITarea";
 import { tareaStore } from "./tareaStore";
 import axios from "axios";
+import { eliminarTareaPorId, postNuevaTarea } from "../http/tareas";
 
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -24,6 +25,8 @@ interface ISprintStore {
    asignarTareaASprint: (tarea: ITarea, sprintId: string) => Promise<void>;
 
    actualizarSprintActivo: (sprintActualizado: ISprint) => void;
+
+   enviarTareaAlBacklog: (tarea: ITarea, stprintId: string) => void;
 }
 
 export const sprintStore = create<ISprintStore>((set, get) => ({
@@ -62,7 +65,8 @@ export const sprintStore = create<ISprintStore>((set, get) => ({
         const tareaConEstado = { ...tarea, estado: "porHacer" };
     
         // Eliminar tarea de la base de datos
-        await axios.delete(`${API_URL}/${tarea.id}`);
+        await eliminarTareaPorId(tarea.id!);
+
     
         // Actualizar el estado de tareaStore
         const { eliminarUnaTarea } = tareaStore.getState();
@@ -88,6 +92,38 @@ export const sprintStore = create<ISprintStore>((set, get) => ({
     
             return { sprints: sprintsActualizados };
         });
+    },
+
+    enviarTareaAlBacklog: async (tarea: ITarea, sprintId: string) => {
+        // Mantener el mismo id y establecer estado en null
+        const tareaSinEstado = { ...tarea, estado: null };
+    
+        // Eliminar tarea del sprint
+        set((state) => {
+            const sprintsActualizados = state.sprints.map((sprint) => {
+                if (sprint.id === sprintId) {
+                    const tareasActualizadas = sprint.tareas?.filter(
+                        (tareaSprint) => tareaSprint.id !== tarea.id
+                    );
+    
+                    // Actualizar el sprint en la base de datos
+                    axios.patch(`${API_URL}/sprints/${sprintId}`, {
+                        tareas: tareasActualizadas,
+                    });
+    
+                    return {
+                        ...sprint,
+                        tareas: tareasActualizadas,
+                    };
+                }
+                return sprint;
+            });
+    
+            return { sprints: sprintsActualizados };
+        });
+    
+        // Guardar la tarea en el backlog (en la lista de tareas generales)
+        await postNuevaTarea(tareaSinEstado); // Asegúrate de que la tarea tenga el id
     },
     
     actualizarSprintActivo: (sprintActualizado) => set((state) => {

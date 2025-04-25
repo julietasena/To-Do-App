@@ -12,6 +12,7 @@ export const useSprints = () => {
     agregarNuevoSprint,
     eliminarUnSprint,
     editarUnSprint,
+    enviarTareaAlBacklog,
   } = sprintStore(
     useShallow((state) => ({
       sprints: state.sprints,
@@ -19,6 +20,8 @@ export const useSprints = () => {
       agregarNuevoSprint: state.agregarNuevoSprint,
       eliminarUnSprint: state.eliminarUnSprint,
       editarUnSprint: state.editarUnSprint,
+      enviarTareaAlBacklog: state.enviarTareaAlBacklog,
+      
     }))
   );
 
@@ -214,5 +217,5 @@ export const useSprints = () => {
   };
   
 
-  return { getSprints, crearSprint, putSprintEditar, eliminarSprint, editarTareaDeSprint,verTareaDeSprint,verSprint };
+  return { getSprints, crearSprint, putSprintEditar, eliminarSprint, editarTareaDeSprint,verTareaDeSprint,verSprint,enviarTareaAlBacklog, };
 };

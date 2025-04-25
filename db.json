@@ -15,33 +15,27 @@
       "estado": null
     },
     {
-      "id": "1745512806767-u276v",
-      "titulo": "Tarea Sprint 2.1",
-      "descripcion": "e",
-      "fechaLimite": "2025-05-02"
+      "id": "1745535221410-m0ori",
+      "titulo": "flores",
+      "descripcion": "aaaa",
+      "fechaLimite": "2025-04-27",
+      "estado": null
     },
     {
-      "id": "2",
-      "titulo": "Crear un boton para eliminar tarea",
-      "descripcion": "E\n",
+      "id": "258",
+      "titulo": "Crear completo",
+      "descripcion": "Estoy editando la tarea numero 2",
       "fechaLimite": "2025-03-21",
-      "estado": "porHacer"
+      "estado": null
     }
   ],
   "sprints": [
     {
       "id": "1",
-      "nombre": "Sprint 1",
+      "nombre": "Sprint primero",
       "fechaInicio": "2025-04-22",
       "fechaFin": "2025-05-05",
       "tareas": [
-        {
-          "id": "2",
-          "titulo": "Crear un boton para eliminar tarea",
-          "descripcion": "Estoy e\n",
-          "fechaLimite": "2025-03-21",
-          "estado": "completado"
-        },
         {
           "id": "23269",
           "titulo": "Crear un boton para eliminar tarea",
@@ -50,11 +44,11 @@
           "estado": null
         },
         {
-          "id": "258",
-          "titulo": "Crear completo",
-          "descripcion": "Estoy edi",
-          "fechaLimite": "2025-04-03",
-          "estado": "completado"
+          "id": "1745512806767-u276v",
+          "titulo": "Tarea Sprint 2.1",
+          "descripcion": "e",
+          "fechaLimite": "2025-05-02",
+          "estado": "porHacer"
         }
       ]
     },
@@ -63,21 +57,37 @@
       "nombre": "Sprint 2.1",
       "fechaInicio": "2025-04-30",
       "fechaFin": "2025-05-08",
-      "tareas": []
+      "tareas": [
+        {
+          "id": "2",
+          "titulo": "Crear un boton para eliminar tarea",
+          "descripcion": "Estoy editando la tarea numero 2hhhhh hhh hhh ",
+          "fechaLimite": "2025-03-21",
+          "estado": "porHacer"
+        }
+      ]
     },
     {
       "id": "4",
       "nombre": "Sprint 2",
       "fechaInicio": "2025-04-25",
       "fechaFin": "2025-04-27",
-      "tareas": []
-    },
-    {
-      "id": "5",
-      "nombre": "hft",
-      "fechaInicio": "2025-04-01",
-      "fechaFin": "2025-05-09",
-      "tareas": []
+      "tareas": [
+        {
+          "id": "1745499609461-kmf0q",
+          "titulo": "qqqq",
+          "descripcion": "qqqq",
+          "fechaLimite": "2025-04-25",
+          "estado": "porHacer"
+        },
+        {
+          "id": "1745535094353-ohsvn",
+          "titulo": "HOLA HOLA",
+          "descripcion": "JJJJJJJJJJJJJJJJ",
+          "fechaLimite": "2025-04-26",
+          "estado": "porHacer"
+        }
+      ]
     }
   ]
 }

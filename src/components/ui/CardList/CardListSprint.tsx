@@ -34,6 +34,7 @@ export const CardListSprint: FC<ICardListSprint> = ({
 
   
    return (
+
        <div>
          <div className="bg-white/70 rounded-2xl shadow-md mb-5 p-3 flex flex-col">
              <h3 className="font-semibold text-center hover:font-bold transition-all duration-200 cursor-pointer" onClick={sprintActivo}>{sprint.nombre}</h3>
@@ -49,6 +50,7 @@ export const CardListSprint: FC<ICardListSprint> = ({
    
            </div>
        </div>
+  
      );
    };
    
