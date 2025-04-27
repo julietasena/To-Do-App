@@ -13,6 +13,8 @@ export const useSprints = () => {
     eliminarUnSprint,
     editarUnSprint,
     enviarTareaAlBacklog,
+    setSprintActivo,
+    actualizarSprintActivo
   } = sprintStore(
     useShallow((state) => ({
       sprints: state.sprints,
@@ -21,7 +23,8 @@ export const useSprints = () => {
       eliminarUnSprint: state.eliminarUnSprint,
       editarUnSprint: state.editarUnSprint,
       enviarTareaAlBacklog: state.enviarTareaAlBacklog,
-      
+      setSprintActivo: state.setSprintActivo,
+      actualizarSprintActivo: state.actualizarSprintActivo
     }))
   );
 
@@ -42,21 +45,19 @@ export const useSprints = () => {
   };
 
   const editarTareaDeSprint = async (tareaEditada: ITarea) => {
-    const { sprintActivo, setSprintActivo } = sprintStore.getState();
-  
+    const { sprintActivo } = sprintStore.getState();
     if (!sprintActivo) {
       console.warn("No hay sprint activo");
       return;
     }
-  
-    // Verificamos que la tarea esté en el sprint activo
+
     const tareasActualizadas = sprintActivo.tareas?.map((t) =>
       t.id === tareaEditada.id ? { ...t, ...tareaEditada } : t
     ) || [];
-  
+
     const sprintActualizado = { ...sprintActivo, tareas: tareasActualizadas };
-    setSprintActivo(sprintActualizado);
-  
+    actualizarSprintActivo(sprintActualizado);
+
     try {
       await putSprintEditar(sprintActualizado);
       Swal.fire("Éxito", "Tarea del sprint actualizada", "success");
@@ -64,13 +65,10 @@ export const useSprints = () => {
       console.error("Error al actualizar la tarea del sprint");
     }
   };
-  
 
   const putSprintEditar = async (sprintEditado: ISprint) => {
     const estadoPrevio = sprints.find((el) => el.id === sprintEditado.id);
     editarUnSprint(sprintEditado);
-
-    console.log("Sprints antes de la actualización:", sprints);
 
     try {
       await editarSprint(sprintEditado);
@@ -105,12 +103,12 @@ export const useSprints = () => {
       console.log("Algo salió mal al eliminar el sprint");
     }
   };
-  
+
   const verSprint = (sprintId: string) => {
     const { sprints } = sprintStore.getState();
-  
+
     const sprint = sprints.find((s) => s.id === sprintId);
-  
+
     if (!sprint) {
       Swal.fire({
         title: "Error",
@@ -120,7 +118,7 @@ export const useSprints = () => {
       });
       return;
     }
-  
+
     const tareasHtml = sprint.tareas && sprint.tareas.length > 0
       ? sprint.tareas.map(t => `
         <li class="mb-2">
@@ -129,7 +127,7 @@ export const useSprints = () => {
         </li>
       `).join("")
       : "<li>No hay tareas en este sprint</li>";
-  
+
     Swal.fire({
       title: `<h2 class="text-center text-[#226f54] text-lg font-bold mb-2">${sprint.nombre}</h2>`,
       html: `
@@ -152,13 +150,12 @@ export const useSprints = () => {
       buttonsStyling: false
     });
   };
-  
 
   const verTareaDeSprint = (idTarea: string) => {
     const sprintActivo = sprintStore.getState().sprintActivo;
-  
+
     const tarea = sprintActivo?.tareas?.find((t) => t.id === idTarea);
-  
+
     if (!tarea) {
       Swal.fire({
         title: "Error",
@@ -168,15 +165,15 @@ export const useSprints = () => {
       });
       return;
     }
-  
+
     const fechaLimite = new Date(tarea.fechaLimite);
     const hoy = new Date();
     fechaLimite.setHours(0, 0, 0, 0);
     hoy.setHours(0, 0, 0, 0);
-  
+
     const diferencia = fechaLimite.getTime() - hoy.getTime();
     const diasRestantes = Math.ceil(diferencia / (1000 * 3600 * 24));
-  
+
     let mensajeDias = "";
     if (diasRestantes < 0) {
       mensajeDias = `<span class="text-red-500 font-semibold">Vencida por ${Math.abs(diasRestantes)} día(s)</span>`;
@@ -185,7 +182,7 @@ export const useSprints = () => {
     } else {
       mensajeDias = `<span class="text-green-700 font-semibold">Faltan ${diasRestantes} día(s)</span>`;
     }
-  
+
     Swal.fire({
       title: '<h2 class="text-center text-[#226f54] text-lg font-bold mb-4">Tarea del Sprint</h2>',
       html: `
@@ -215,7 +212,15 @@ export const useSprints = () => {
       buttonsStyling: false
     });
   };
-  
 
-  return { getSprints, crearSprint, putSprintEditar, eliminarSprint, editarTareaDeSprint,verTareaDeSprint,verSprint,enviarTareaAlBacklog, };
+  return {
+    getSprints,
+    crearSprint,
+    putSprintEditar,
+    eliminarSprint,
+    editarTareaDeSprint,
+    enviarTareaAlBacklog,
+    verSprint,
+    verTareaDeSprint
+  };
 };

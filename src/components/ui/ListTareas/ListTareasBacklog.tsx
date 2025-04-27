@@ -8,7 +8,9 @@ import { ITarea } from "../../../types/ITarea";
 
 export const ListTareasBacklog = () => {
 
-    const tareas = tareaStore((state) => state.tareas);
+    const backlog = tareaStore((state) => state.backlog);
+    const tareas = backlog.tareas;
+
 
     const setTareaActiva = tareaStore((state) => state.setTareaActiva);
 

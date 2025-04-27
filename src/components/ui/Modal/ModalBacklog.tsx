@@ -13,6 +13,7 @@ const initialState: ITarea = {
     titulo: "",
     descripcion: "",
     fechaLimite: "",
+    estado:null
 }
 
 export const ModalBacklog: FC<IModal> = ({ handleCloseModal }) => {
