@@ -14,11 +14,11 @@ export const getAllSprints = async () => {
 
 export const postNuevoSprint = async (nuevoSprint: ISprint) => {
   try {
-    const res = await axios.get<{ sprints: ISprint[] }>(`${API_URL}/sprintList`);
+    const res = await axios.get(`${API_URL}/sprintList`);
     const sprintsActuales = res.data.sprints || [];
 
     const nuevosSprints = [...sprintsActuales, nuevoSprint];
-    await axios.patch(`${API_URL}/sprintList`, { sprints: nuevosSprints });
+    await axios.put(`${API_URL}/sprintList`, { sprints: nuevosSprints });
   } catch (error) {
     console.log(error);
   }
@@ -33,9 +33,11 @@ export const editarSprint = async (sprintActualizado: ISprint) => {
       sprint.id === sprintActualizado.id ? { ...sprint, ...sprintActualizado } : sprint
     );
 
-    await axios.patch(`${API_URL}/sprintList`, { sprints: nuevosSprints });
+    await axios.put(`${API_URL}/sprintList`, { sprints: nuevosSprints });
+    return true;
   } catch (error) {
     console.log(error);
+    return false;
   }
 };
 
@@ -46,8 +48,10 @@ export const eliminarSprintPorId = async (idSprint: string) => {
 
     const nuevosSprints = sprintsActuales.filter((sprint) => sprint.id !== idSprint);
 
-    await axios.patch(`${API_URL}/sprintList`, { sprints: nuevosSprints });
+    await axios.put(`${API_URL}/sprintList`, { sprints: nuevosSprints });
+    return true;
   } catch (error) {
     console.log(error);
+    return false;
   }
 };

@@ -44,7 +44,7 @@ export const ListTareasBacklog = () => {
     return (
         <>
 
-            <div className=" bg-[#87c38f]/70 rounded-2xl p-4 mi-h-screen h-full">
+            <div className=" bg-[#87c38f]/70 rounded-2xl p-4 mi-h-screen h-full dark:bg-black">
                 <div className="flex justify-between items-center mb-6">
                     <h2 className="text-xl font-bold">Tareas en el backlog</h2>
                     <button className="bg-[#504136] text-white px-4 py-2 rounded-full"

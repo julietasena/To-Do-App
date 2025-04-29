@@ -4,9 +4,6 @@ import { ListTareasBacklog } from '../ui/ListTareas/ListTareasBacklog';
 
 const BacklogScreen: React.FC = () => {
 
-
-
-
   return (
 
     <div>

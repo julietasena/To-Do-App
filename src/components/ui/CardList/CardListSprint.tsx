@@ -3,7 +3,7 @@ import { ISprint } from "../../../types/ISprint";
 import {  Edit, Eye, Trash2 } from "lucide-react";
 import { useSprints } from "../../../hooks/useSprints";
 import { sprintStore } from "../../../store/sprintStore";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 
 type ICardListSprint = {
   sprint: ISprint;
@@ -21,7 +21,6 @@ export const CardListSprint: FC<ICardListSprint> = ({
   const eliminarSprintPorId = () => {
     eliminarSprint(sprint.id!);
   };
-  const sprints = sprintStore((state) => state.sprints);
   const editarSprint = () => {
     handleOpenModalEdit(sprint);
   };
@@ -38,8 +37,11 @@ export const CardListSprint: FC<ICardListSprint> = ({
 
        <div>
          <div className="bg-white/70 rounded-2xl shadow-md mb-5 p-3 flex flex-col">
-              
+             <div>
              <h3 className="font-semibold text-center hover:font-bold transition-all duration-200 cursor-pointer" onClick={sprintActivo}>{sprint.nombre}</h3>
+             
+            </div> 
+             
              <div className="flex mt-2">
                <p className="text-sm text-[#504136]"> {sprint.fechaInicio}</p>
                <p className="text-sm text-[#504136] ml-4"> {sprint.fechaFin}</p>

@@ -26,7 +26,7 @@ const EnviarABacklogButton: React.FC<Props> = ({ tarea, sprintId }) => {
     onClick={handleClick} 
     className="bg-[#504136]/75 text-white px-3 py-1 rounded-full text-sm flex items-center hover:bg-[#504136]/90 transition duration-200 cursor-pointer"
     >
-      Backlog
+      BL
     </button>
   );
 };

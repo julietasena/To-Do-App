@@ -14,13 +14,20 @@ export const getAllTareas = async () => {
 
 export const postNuevaTarea = async (nuevaTarea: ITarea) => {
   try {
-    const res = await axios.get<{ tareas: ITarea[] }>(`${API_URL}/backlog`);
-    const tareasActuales = res.data.tareas || [];
+
+    const resBacklog = await axios.get(`${API_URL}/backlog`);
+    
+    const tareasActuales = resBacklog.data.tareas || [];
 
     const nuevasTareas = [...tareasActuales, nuevaTarea];
-    await axios.patch(`${API_URL}/backlog`, { tareas: nuevasTareas });
+    await axios.put(`${API_URL}/backlog`, {
+      tareas: nuevasTareas
+    });
+    
+    return true;
   } catch (error) {
-    console.log(error);
+    console.error("Error al postear nueva tarea:", error);
+    return false;
   }
 };
 
@@ -33,9 +40,12 @@ export const editarTarea = async (tareaActualizada: ITarea) => {
       tarea.id === tareaActualizada.id ? { ...tarea, ...tareaActualizada } : tarea
     );
 
-    await axios.patch(`${API_URL}/backlog`, { tareas: nuevasTareas });
+    // Cambiado de patch a put para asegurar reemplazo completo
+    await axios.put(`${API_URL}/backlog`, { tareas: nuevasTareas });
+    return true;
   } catch (error) {
     console.log(error);
+    return false;
   }
 };
 
@@ -46,9 +56,11 @@ export const eliminarTareaPorId = async (idTarea: string) => {
 
     const nuevasTareas = tareasActuales.filter((tarea) => tarea.id !== idTarea);
 
-    await axios.patch(`${API_URL}/backlog`, { tareas: nuevasTareas });
+    // Cambiado de patch a put para asegurar reemplazo completo
+    await axios.put(`${API_URL}/backlog`, { tareas: nuevasTareas });
+    return true;
   } catch (error) {
     console.log(error);
-    throw error;
+    return false;
   }
 };

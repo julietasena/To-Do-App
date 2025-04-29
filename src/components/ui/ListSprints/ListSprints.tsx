@@ -4,6 +4,7 @@ import { sprintStore } from "../../../store/sprintStore";
 import { CardListSprint } from "../CardList/CardListSprint";
 import { ISprint } from "../../../types/ISprint";
 import { ModalSprint } from "../Modal/ModalSprint"; // <- import corregido
+import { Link } from "react-router-dom";
 
 const ListSprints: React.FC = () => {
   const sprints = sprintStore((state) => state.sprints);
@@ -51,12 +52,16 @@ const ListSprints: React.FC = () => {
 
       {sprints.length > 0 ? (
         sprints.map((sprint: ISprint) => (
+          
           <div key={sprint.id} className="flex flex-col">
+            <Link to={`/sprints/${sprint.id}`}>
             <CardListSprint
               handleOpenModalEdit={handleOpenModalEdit}
               sprint={sprint}
               handleOpenModal={handleOpenModal}
             />
+            </Link>
+            
           </div>
         ))
       ) : (
