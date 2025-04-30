@@ -14,20 +14,6 @@
         "descripcion": "Hacer tal cosa",
         "fechaLimite": "2025-04-14",
         "estado": null
-      },
-      {
-        "id": "1745535221410-m0ori",
-        "titulo": "flores",
-        "descripcion": "aaaa",
-        "fechaLimite": "2025-04-27",
-        "estado": null
-      },
-      {
-        "id": "1745535094353-ohsvn",
-        "titulo": "HOLA HOLA",
-        "descripcion": "hhhhhhh",
-        "fechaLimite": "2025-04-26",
-        "estado": null
       }
     ]
   },
@@ -51,6 +37,13 @@
             "titulo": "qqqq",
             "descripcion": "qq",
             "fechaLimite": "2025-04-25",
+            "estado": "completado"
+          },
+          {
+            "id": "1745535094353-ohsvn",
+            "titulo": "HOLA HOLA",
+            "descripcion": "hhhhhhh",
+            "fechaLimite": "2025-04-26",
             "estado": "enProceso"
           }
         ]
@@ -61,14 +54,21 @@
         "fechaFin": "2025-05-28",
         "tareas": [
           {
-            "id": "1745535094353-ohsvn",
-            "titulo": "HOLA HOLA",
-            "descripcion": "JJJJJJJJJJJJJJJJsefefc",
-            "fechaLimite": "2025-04-26",
-            "estado": "porHacer"
+            "titulo": "cgbc",
+            "descripcion": "bvfxb",
+            "fechaLimite": "2025-04-23",
+            "estado": "completado",
+            "id": "1745972172340-5jokh"
           }
         ],
         "id": "5"
+      },
+      {
+        "nombre": "jhcdccd",
+        "fechaInicio": "2025-05-08",
+        "fechaFin": "2025-05-09",
+        "tareas": [],
+        "id": "6"
       }
     ]
   }

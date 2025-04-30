@@ -60,7 +60,7 @@ export const useSprints = () => {
 
     try {
       await putSprintEditar(sprintActualizado);
-      Swal.fire("Éxito", "Tarea del sprint actualizada", "success");
+    //  Swal.fire("Éxito", "Tarea del sprint actualizada", "success");
     } catch (error) {
       console.error("Error al actualizar la tarea del sprint");
     }
@@ -72,7 +72,7 @@ export const useSprints = () => {
 
     try {
       await editarSprint(sprintEditado);
-      Swal.fire("Éxito", "Sprint actualizado correctamente", "success");
+    //  Swal.fire("Éxito", "Sprint actualizado correctamente", "success");
     } catch (error) {
       if (estadoPrevio) editarUnSprint(estadoPrevio);
       console.log("Algo salió mal al editar el sprint");

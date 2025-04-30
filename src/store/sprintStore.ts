@@ -1,7 +1,6 @@
 import { create } from "zustand";
 import { ISprint } from "../types/ISprint";
 import { ITarea } from "../types/ITarea";
-import { tareaStore } from "./tareaStore";
 import axios from "axios";
 import { eliminarTareaPorId, postNuevaTarea } from "../http/tareas";
 
@@ -50,65 +49,84 @@ export const sprintStore = create<ISprintStore>((set, get) => ({
   }),
 
   asignarTareaASprint: async (tarea, sprintId) => {
-    const tareaConEstado = { ...tarea, estado: "porHacer" };
-  
-    // Eliminar la tarea del backlog
-    const { eliminarUnaTarea } = tareaStore.getState();
-    eliminarUnaTarea(tarea.id!);
-  
-    // Actualizar el sprint agregando la tarea
-    set((state) => {
-      const sprintsActualizados = state.sprints.map((sprint) => {
-        if (sprint.id === sprintId) {
-          const tareasActualizadas = [...(sprint.tareas ?? []), tareaConEstado];
-  
-          // Actualizar en la API también
-          axios.patch(`${API_URL}/sprintList/sprints/${sprintId}`, { tareas: tareasActualizadas });
-  
-          return { ...sprint, tareas: tareasActualizadas };
-        }
-        return sprint;
+    try {
+      const tareaConEstado = { ...tarea, estado: "porHacer" };
+      
+      await eliminarTareaPorId(tarea.id!);
+
+      set((state) => {
+        const sprintsActualizados = state.sprints.map((sprint) => {
+          if (sprint.id === sprintId) {
+            const tareasActualizadas = [...(sprint.tareas ?? []), tareaConEstado];
+            
+            // Obtener primero todos los sprints
+            axios.get(`${API_URL}/sprintList`)
+              .then(response => {
+                const todosLosSprints = response.data.sprints || [];
+                
+                // Actualizar el sprint específico dentro del array
+                const sprintsModificados = todosLosSprints.map(s => 
+                  s.id === sprintId ? { ...s, tareas: tareasActualizadas } : s
+                );
+                
+                // Actualizar toda la lista de sprints
+                axios.put(`${API_URL}/sprintList`, { sprints: sprintsModificados })
+                  .catch(error => console.error("Error al actualizar sprint:", error));
+              })
+              .catch(error => console.error("Error al obtener sprints:", error));
+            
+            return { ...sprint, tareas: tareasActualizadas };
+          }
+          return sprint;
+        });
+        
+        return { sprints: sprintsActualizados };
       });
-  
-      return { sprints: sprintsActualizados };
-    });
+      
+      // No retornamos valor para cumplir con Promise<void>
+    } catch (error) {
+      console.error("Error al asignar tarea a sprint:", error);
+      // No retornamos valor para cumplir con Promise<void>
+    }
   },
   
-  
-
   enviarTareaAlBacklog: async (tarea, sprintId) => {
     const tareaSinEstado = { ...tarea, estado: null };
   
-    const { sprints } = get(); // 👉 importante obtener el estado actual de Zustand
+    const { sprints } = get(); 
   
-    // Eliminar la tarea del sprint y actualizar en la API
-    const sprintsActualizados = sprints.map((sprint) => {
-      if (sprint.id === sprintId) {
-        const tareasActualizadas = sprint.tareas?.filter((t) => t.id !== tarea.id) || [];
+    // Eliminar la tarea del sprint
+  const sprintsActualizados = sprints.map((sprint) => {
+    if (sprint.id === sprintId) {
+      // Asegurarse de que sprint.tareas sea un array antes de filtrar
+      const tareasActualizadas = Array.isArray(sprint.tareas) 
+        ? sprint.tareas.filter((t) => t.id !== tarea.id) 
+        : [];
+      
+      return { ...sprint, tareas: tareasActualizadas };
+    }
+    return sprint;
+  });
   
-        return { ...sprint, tareas: tareasActualizadas };
-      }
-      return sprint;
-    });
+  // Actualizar la lista completa de sprints en la API
+  await axios.put(`${API_URL}/sprintList`, { sprints: sprintsActualizados });
   
-    await axios.patch(`${API_URL}/sprintList`, { sprints: sprintsActualizados });
+  // Actualizar Zustand local
+  set((state) => {
+    const sprintActivoActualizado = state.sprintActivo?.id === sprintId
+      ? {
+          ...state.sprintActivo,
+          tareas: Array.isArray(state.sprintActivo.tareas)
+            ? state.sprintActivo.tareas.filter((t) => t.id !== tarea.id)
+            : []
+        }
+      : state.sprintActivo;
   
-    // Ahora actualizar Zustand local
-    set((state) => {
-      const sprintActivoActualizado = state.sprintActivo?.id === sprintId
-        ? {
-            ...state.sprintActivo,
-            tareas: state.sprintActivo.tareas?.filter((t) => t.id !== tarea.id)
-          }
-        : state.sprintActivo;
-  
-      return { sprints: sprintsActualizados, sprintActivo: sprintActivoActualizado };
-    });
-  
+    return { sprints: sprintsActualizados, sprintActivo: sprintActivoActualizado };
+  });
     // Agregar la tarea al backlog
     await postNuevaTarea(tareaSinEstado);
   },
-  
   
 
   actualizarSprintActivo: (sprintActualizado) => set((state) => {

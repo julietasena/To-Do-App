@@ -43,9 +43,9 @@ export const CardListSprint: FC<ICardListSprint> = ({
             </div> 
              
              <div className="flex mt-2">
-               <p className="text-sm text-[#504136]"> {sprint.fechaInicio}</p>
-               <p className="text-sm text-[#504136] ml-4"> {sprint.fechaFin}</p>
-               <div className="flex items-center space-x-3 ml-4">
+               <p className="text-sm text-[#504136] "> {sprint.fechaInicio}</p>
+               <p className="text-sm text-[#504136] ml-2"> {sprint.fechaFin}</p>
+               <div className="flex items-center space-x-1 ml-4">
                  <Eye className="text-gray-500 cursor-pointer hover:text-blue-500" size={20} onClick={verDetalleSprint}/>
                  <Edit className="text-gray-500 cursor-pointer hover:text-yellow-500" size={20} onClick={editarSprint}/>
                  <Trash2 className="text-gray-500 cursor-pointer hover:text-red-500" size={20} onClick={eliminarSprintPorId} />

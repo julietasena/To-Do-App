@@ -40,7 +40,6 @@ export const editarTarea = async (tareaActualizada: ITarea) => {
       tarea.id === tareaActualizada.id ? { ...tarea, ...tareaActualizada } : tarea
     );
 
-    // Cambiado de patch a put para asegurar reemplazo completo
     await axios.put(`${API_URL}/backlog`, { tareas: nuevasTareas });
     return true;
   } catch (error) {
@@ -56,7 +55,6 @@ export const eliminarTareaPorId = async (idTarea: string) => {
 
     const nuevasTareas = tareasActuales.filter((tarea) => tarea.id !== idTarea);
 
-    // Cambiado de patch a put para asegurar reemplazo completo
     await axios.put(`${API_URL}/backlog`, { tareas: nuevasTareas });
     return true;
   } catch (error) {

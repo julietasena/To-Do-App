@@ -51,7 +51,7 @@ export const useTareas = () => {
 
     try {
       await editarTarea(tareaEditada);
-      Swal.fire("Éxito", "Tarea actualizada correctamente", "success");
+
     } catch (error) {
       if (estadoPrevio) editarUnaTarea(estadoPrevio);
       console.log("Algo salió mal al editar");
