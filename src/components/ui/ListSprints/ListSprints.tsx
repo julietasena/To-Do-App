@@ -4,7 +4,7 @@ import { sprintStore } from "../../../store/sprintStore";
 import { CardListSprint } from "../CardList/CardListSprint";
 import { ISprint } from "../../../types/ISprint";
 import { ModalSprint } from "../Modal/ModalSprint"; // <- import corregido
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
 const ListSprints: React.FC = () => {
   const sprints = sprintStore((state) => state.sprints);

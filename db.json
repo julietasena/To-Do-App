@@ -3,17 +3,31 @@
     "tareas": [
       {
         "id": "Tue Apr 01 2025",
-        "titulo": "Crear modaldfdddddddd",
-        "descripcion": "Boton para editar tareasJA",
+        "titulo": "Crear modal",
+        "descripcion": "Crear modal crear tareas",
         "fechaLimite": "2025-04-13",
         "estado": null
       },
       {
         "id": "Fri Apr 11 2025",
-        "titulo": "Pruebo otra",
-        "descripcion": "Hacer tal cosa",
+        "titulo": "Agregar alerta",
+        "descripcion": "Agregar alerta con sweetalert",
         "fechaLimite": "2025-04-14",
         "estado": null
+      },
+      {
+        "titulo": "TAREA NUEVA",
+        "descripcion": "Descripcion ",
+        "fechaLimite": "2025-05-01",
+        "estado": null,
+        "id": "1745981016434-53upx"
+      },
+      {
+        "titulo": "Tarea ejemplo",
+        "descripcion": "Estoy describiendo una tarea",
+        "fechaLimite": "2025-05-02",
+        "estado": null,
+        "id": "1746012078343-0zugw"
       }
     ]
   },
@@ -21,7 +35,7 @@
     "sprints": [
       {
         "id": "3",
-        "nombre": "Sprint 2.1",
+        "nombre": "Sprint 1",
         "fechaInicio": "2025-04-30",
         "fechaFin": "2025-05-08",
         "tareas": []
@@ -34,41 +48,19 @@
         "tareas": [
           {
             "id": "1745499609461-kmf0q",
-            "titulo": "qqqq",
-            "descripcion": "qq",
+            "titulo": "Modificar rutas",
+            "descripcion": "Las rutas deben ser modificadas ",
             "fechaLimite": "2025-04-25",
             "estado": "completado"
           },
           {
             "id": "1745535094353-ohsvn",
-            "titulo": "HOLA HOLA",
-            "descripcion": "hhhhhhh",
+            "titulo": "Enviar formulario",
+            "descripcion": "Crear el botón para enviar formulario",
             "fechaLimite": "2025-04-26",
-            "estado": "enProceso"
+            "estado": "completado"
           }
         ]
-      },
-      {
-        "nombre": "sprintiiii",
-        "fechaInicio": "2025-04-24",
-        "fechaFin": "2025-05-28",
-        "tareas": [
-          {
-            "titulo": "cgbc",
-            "descripcion": "bvfxb",
-            "fechaLimite": "2025-04-23",
-            "estado": "completado",
-            "id": "1745972172340-5jokh"
-          }
-        ],
-        "id": "5"
-      },
-      {
-        "nombre": "jhcdccd",
-        "fechaInicio": "2025-05-08",
-        "fechaFin": "2025-05-09",
-        "tareas": [],
-        "id": "6"
       }
     ]
   }

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router';
 import { sprintStore } from '../../store/sprintStore';
 import { HeaderSprint } from '../ui/Header/HeaderSprint';
 import { ListEstado } from '../ui/ListSprints/ListEstado';
